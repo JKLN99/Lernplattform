@@ -272,7 +272,7 @@
         </div>
 
         <!-- EXTERNER ZUSATZ-BUTTON UNTEN (WIRD DYNAMISCH EIN- ODER AUSGEBLENDET) -->
-        <a id="external-link-btn" href="#" target="_blank" class="btn-external-link hidden">🔍 Zur externen Quellenkritik</a>
+        <a id="external-link-btn" href="#" target="_blank" class="btn-external-link hidden">🔍 Button-Text</a>
     </div>
 
 </div>
@@ -286,6 +286,7 @@
             question: "Deine Ausarbeitung zu Aufgabe 1:",
             isCustomLayout: true, 
             hasExternalLink: true,
+            externalLinkText: "🔍 Zur externen Quellenkritik",
             externalLinkTarget: "aussenQuellenkritik.png",
             htmlContent: `
                 <!-- BILD DER KAPITOLINISCHEN WÖLFIN -->
@@ -325,11 +326,22 @@
         },
         m2: {
             title: "M2: Die Expansion des Reiches",
-            task: "Analysiere den Erfolg der römischen Armee. Notiere die wichtigsten Gründe im Notizbuch.",
-            question: "Welche Faktoren machten die römische Armee so erfolgreich?",
-            isCustomLayout: false,
-            hasExternalLink: false,
-            text: "Durch disziplinierte Legionen und geschickte Bündnisse breitete sich Rom über den gesamten Mittelmeerraum aus. Aus der kleinen Republik wurde ein riesiges Weltreich (Imperium Romanum).",
+            task: "1) <b>Untersuche</b> die Geschichtskarte des Römischen Reiches im bereitgestellten Material.<br><br>2) <b>Analysiere</b> den Erfolg der römischen Armee und notiere die wichtigsten Gründe für die Expansion im Notizbuch.",
+            question: "Welche Faktoren machten die römische Armee so erfolgreich und wie weit dehnte sich das Reich aus?",
+            isCustomLayout: true,
+            hasExternalLink: true,
+            externalLinkText: "📄 Zum Kartenmaterial (PDF)",
+            externalLinkTarget: "Kartenmaterial.pdf", // Hier trägst du den Namen deiner PDF ein!
+            htmlContent: `
+                <!-- KASTEN D1 FÜR M2 -->
+                <div class="material-box">
+                    <h3>🗺️ D1 | Geschichtskarte des Römischen Reiches</h3>
+                    <div class="text-with-lines">
+                        <div class="line-p"><div class="line-number">1</div><div class="line-text">Durch disziplinierte Legionen und geschickte Bündnisse breitete sich Rom über den gesamten Mittelmeerraum aus.</div></div>
+                        <div class="line-p"><div class="line-number">3</div><div class="line-text">Aus der kleinen Republik am Tiber wurde im Laufe der Jahrhunderte ein riesiges Weltreich (Imperium Romanum), das sich über drei Kontinente erstreckte.</div></div>
+                    </div>
+                </div>
+            `
         }
     };
 
@@ -358,10 +370,11 @@
             `;
         }
 
-        // Externen Link-Button prüfen und einstellen
+        // Externen Link-Button (Bild oder PDF) prüfen und einstellen
         const extBtn = document.getElementById('external-link-btn');
         if (data.hasExternalLink) {
             extBtn.href = data.externalLinkTarget;
+            extBtn.innerText = data.externalLinkText;
             extBtn.classList.remove('hidden');
         } else {
             extBtn.classList.add('hidden');
