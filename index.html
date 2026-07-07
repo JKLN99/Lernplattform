@@ -8,7 +8,7 @@
         /* --- ALLGEMEINES STYLING --- */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #d2b48c; /* Leichtes Pergament-Gelb */
+            background-color: #f0e6d2; /* Leichtes Pergament-Gelb */
             color: #333;
             margin: 0;
             padding: 0 0 40px 0; /* Oben 0 wegen der Kopfzeile */
@@ -17,18 +17,21 @@
             align-items: center;
         }
 
-        /* --- NEUE KOPFZEILE (BANNER) --- */
+        /* --- KOPFZEILE (BANNER) --- */
         .portal-header {
             width: 100%;
-            background-color: #4e2a28; /* Dunkles Römisch-Braun/Rot aus deinem Screenshot */
+            background-color: #4e2a28; /* Dunkles Römisch-Braun/Rot */
             color: white;
             padding: 15px 25px;
             box-sizing: border-box;
             margin-bottom: 30px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: space-between; /* Schiebt Text nach links und Button nach rechts */
+            align-items: center;
         }
 
-        .portal-header h1 {
+        .header-text h1 {
             margin: 0;
             font-size: 20px;
             text-align: left;
@@ -38,11 +41,32 @@
             gap: 8px;
         }
 
-        .portal-header p {
+        .header-text p {
             margin: 5px 0 0 0;
             font-size: 15px;
             opacity: 0.9;
             text-align: left;
+        }
+
+        /* --- STYLING FÜR DEN MUSIK-BUTTON --- */
+        .btn-audio-toggle {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 8px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .btn-audio-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: scale(1.03);
         }
 
         /* --- INHALTS-CONTAINER --- */
@@ -57,7 +81,7 @@
         }
 
         h1, h2, h3 {
-            color: #4e2a28; /* Römisches Rot */
+            color: #8b0000; /* Römisches Rot */
             text-align: center;
         }
 
@@ -74,7 +98,7 @@
         }
 
         .quest-card {
-            background: #4e2a28;
+            background: #8b0000; /* ← HIER die Hauptfarbe für das Menü ändern! */
             color: white;
             padding: 20px;
             border-radius: 8px;
@@ -89,7 +113,7 @@
 
         .quest-card:hover {
             transform: scale(1.05);
-            background: #a00000;
+            background: #a00000; /* ← HIER den Hover-Effekt für das Menü ändern! */
         }
 
         /* --- MATERIAL-SEITE & KÄSTEN --- */
@@ -258,8 +282,13 @@
 <body>
 
 <div class="portal-header">
-    <h1>KLN ⚽</h1>
-    <p>Klasse 6</p>
+    <div class="header-text">
+        <h1>KLN ⚽</h1>
+        <p>Klasse 6</p>
+    </div>
+    <button class="btn-audio-toggle" onclick="toggleMusic()" id="music-btn">
+        🎵 Musik an
+    </button>
 </div>
 
 <div class="container">
@@ -337,6 +366,28 @@
 </div>
 
 <script>
+    // --- HINTERGRUND-SOUND EINRICHTEN ---
+    const bgSound = new Audio('hintergrund.mp3');
+    bgSound.loop = true;
+    bgSound.volume = 0.2; 
+    let isMusicPlaying = false;
+
+    function toggleMusic() {
+        const btn = document.getElementById('music-btn');
+        if (isMusicPlaying) {
+            bgSound.pause();
+            btn.innerHTML = "🎵 Musik an";
+            isMusicPlaying = false;
+        } else {
+            bgSound.play().then(() => {
+                btn.innerHTML = "⏸️ Musik aus";
+                isMusicPlaying = true;
+            }).catch(error => {
+                alert("Bitte klicke erst auf die Seite, damit der Browser den Ton erlaubt!");
+            });
+        }
+    }
+
     // --- DATEN DER MODULE ---
     const modulesData = {
         m1: {
@@ -418,7 +469,7 @@
             question: "Welche inneren Krisen schadeten dem Reich?",
             isCustomLayout: false,
             hasExternalLink: false,
-            text: "<b>Innere Krisen:</b> Häufige Bürgerkriege um die Kaiserkrone, eine hohe Inflation, Korruption in der Verwaltung und wirtschaftliche Probleme schwächten Rom über Jahrzete. Zudem führte die Teilung des Reiches in Westrom und Ostrom zu einer Spaltung der Kräfte."
+            text: "<b>Innere Krisen:</b> Häufige Bürgerkriege um die Kaiserkrone, eine hohe Inflation, Korruption in der Verwaltung und wirtschaftliche Probleme schwächten Rom über Jahrzehnte. Zudem führte die Teilung des Reiches in Westrom und Ostrom zu einer Spaltung der Kräfte."
         },
         m5: {
             title: "M5: Gesellschaft im Römischen Reich",
@@ -432,21 +483,18 @@
 
     let currentModuleId = "";
 
- // --- NAVIGATION ---
+    // --- NAVIGATION ---
     function openModule(moduleId) {
-        // VERSUCHEN, DEN SOUND ZU STARTEN
+        // VERSUCHEN, DEN SOUND ZU STARTEN (Fehler fangen wir ab, damit die Seite weiterlädt!)
         if (!isMusicPlaying) {
             bgSound.play().then(() => {
                 document.getElementById('music-btn').innerHTML = "⏸️ Musik aus";
                 isMusicPlaying = true;
             }).catch(error => {
-                // FALLS DER BROWSER BLOCKIERT: 
-                // Wir loggen es nur in der Konsole, blockieren aber nicht den Schüler!
                 console.log("Musik-Autoplay vom Browser blockiert. Modul öffnet sich trotzdem.");
             });
         }
 
-        // Falls es Modul M4 ist, zur Sonderübersicht weiterleiten
         if (moduleId === 'm4') {
             document.getElementById('start-page').classList.add('hidden');
             document.getElementById('module-page').classList.add('hidden');
@@ -457,7 +505,6 @@
         currentModuleId = moduleId;
         const data = modulesData[moduleId];
 
-        // Überprüfen, ob Daten für das Modul existieren (Sicherheitscheck)
         if (!data) {
             console.error("Keine Daten für Modul gefunden: " + moduleId);
             return;
@@ -491,12 +538,11 @@
         const savedAnswer = localStorage.getItem('answer_' + moduleId);
         document.getElementById('notebook-answer').value = savedAnswer ? savedAnswer : "";
 
-        // Seiten umschalten (WICHTIG: Erst hier werden die Masken sichtbar!)
+        // SEITEN SICHTBAR SCHALTEN
         document.getElementById('start-page').classList.add('hidden');
         document.getElementById('m4-overview-page').classList.add('hidden');
         document.getElementById('module-page').classList.remove('hidden');
         document.getElementById('notebook-container').classList.add('hidden');
-    }
     }
 
     function handleBackAction() {
