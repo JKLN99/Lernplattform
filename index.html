@@ -432,8 +432,20 @@
 
     let currentModuleId = "";
 
+    // Hintergrund-Sound vorbereiten
+const bgSound = new Audio('hintergrund.mp3');
+bgSound.loop = true; // Aktiviert die Dauerschleife
+bgSound.volume = 0.2; // Setzt die Lautstärke auf 20% (damit es dezent im Hintergrund bleibt)
+
     // --- NAVIGATION ---
     function openModule(moduleId) {
+    // Sound starten, sobald der Nutzer das erste Mal ein Modul anklickt
+    bgSound.play().catch(error => {
+        console.log("Autoplay von Browser blockiert, bis mehr Interaktion stattfindet.");
+    });
+
+    if (moduleId === 'm4') {
+        // ... (hier geht dein normaler Code weiter)
         if (moduleId === 'm4') {
             document.getElementById('start-page').classList.add('hidden');
             document.getElementById('module-page').classList.add('hidden');
