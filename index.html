@@ -11,7 +11,7 @@
             background-color: #f0e6d2; /* Leichtes Pergament-Gelb */
             color: #333;
             margin: 0;
-            padding: 0 0 40px 0; /* Oben 0 wegen der Kopfzeile */
+            padding: 0 0 40px 0;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -27,7 +27,7 @@
             margin-bottom: 30px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
             display: flex;
-            justify-content: space-between; /* Schiebt Text nach links und Button nach rechts */
+            justify-content: space-between;
             align-items: center;
         }
 
@@ -98,7 +98,7 @@
         }
 
         .quest-card {
-            background: #8b0000; /* ← HIER die Hauptfarbe für das Menü ändern! */
+            background: #8b0000; 
             color: white;
             padding: 20px;
             border-radius: 8px;
@@ -113,7 +113,7 @@
 
         .quest-card:hover {
             transform: scale(1.05);
-            background: #a00000; /* ← HIER den Hover-Effekt für das Menü ändern! */
+            background: #a00000; 
         }
 
         /* --- MATERIAL-SEITE & KÄSTEN --- */
@@ -366,13 +366,20 @@
 </div>
 
 <script>
-    // --- HINTERGRUND-SOUND EINRICHTEN ---
-    const bgSound = new Audio('hintergrund.mp3');
-    bgSound.loop = true;
-    bgSound.volume = 0.2; 
+    // --- HINTERGRUND-SOUND EINRICHTEN (SICHER GEGEN ABSTÜRZE GEKAPSELT) ---
+    let bgSound = null;
     let isMusicPlaying = false;
 
+    try {
+        bgSound = new Audio('hintergrund.mp3');
+        bgSound.loop = true;
+        bgSound.volume = 0.2; 
+    } catch (e) {
+        console.log("Audio-Objekt konnte vom Browser nicht initialisiert werden.");
+    }
+
     function toggleMusic() {
+        if (!bgSound) return;
         const btn = document.getElementById('music-btn');
         if (isMusicPlaying) {
             bgSound.pause();
@@ -400,7 +407,7 @@
             externalLinkTarget: "aussenQuellenkritik.png",
             htmlContent: `
                 <div class="image-container">
-                    <img src="woelfin.jpg" alt="Kapitolinische Wölfin" class="material-img">
+                    <img src="Lupa_Capitolina.jpg" alt="Kapitolinische Wölfin" class="material-img">
                     <div class="image-caption">
                         Quelle: Kapitolinische Wölfin (Lupa Capitolina): Wölfin mit Romulus und Remus, Bronze, 12. Jahrhundert n. Chr. (laut C14-Datierung; nach traditioneller Sicht etruskisch aus dem 5. Jahrhundert v. Chr.), Zwillinge hinzugefügt im 15. Jahrhundert.
                     </div>
@@ -485,13 +492,13 @@
 
     // --- NAVIGATION ---
     function openModule(moduleId) {
-        // VERSUCHEN, DEN SOUND ZU STARTEN (Fehler fangen wir ab, damit die Seite weiterlädt!)
-        if (!isMusicPlaying) {
+        // Sound-Start komplett unabhängig machen
+        if (bgSound && !isMusicPlaying) {
             bgSound.play().then(() => {
                 document.getElementById('music-btn').innerHTML = "⏸️ Musik aus";
                 isMusicPlaying = true;
-            }).catch(error => {
-                console.log("Musik-Autoplay vom Browser blockiert. Modul öffnet sich trotzdem.");
+            }).catch(e => {
+                console.log("Audio blockiert – kein Problem, Seite schaltet trotzdem um.");
             });
         }
 
@@ -505,10 +512,7 @@
         currentModuleId = moduleId;
         const data = modulesData[moduleId];
 
-        if (!data) {
-            console.error("Keine Daten für Modul gefunden: " + moduleId);
-            return;
-        }
+        if (!data) return;
 
         document.getElementById('module-title').innerText = data.title;
         document.getElementById('module-task').innerHTML = data.task;
