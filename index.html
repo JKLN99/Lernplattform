@@ -130,6 +130,28 @@
             padding: 0 10px;
         }
 
+        /* --- EXTERNER LINK BUTTON --- */
+        .btn-external-link {
+            background: #2b579a; /* Blau */
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            box-sizing: border-box;
+            transition: background 0.2s;
+        }
+
+        .btn-external-link:hover {
+            background: #1e3f70;
+        }
+
         /* --- TEXT MIT ZEILENANGABEN (BLOCKSATZ) --- */
         .text-with-lines {
             text-align: justify; /* Blocksatz */
@@ -248,6 +270,9 @@
             <br>
             <button class="btn-save" onclick="saveAnswer()">💾 Antwort im Modul speichern</button>
         </div>
+
+        <!-- EXTERNER ZUSATZ-BUTTON UNTEN (WIRD DYNAMISCH EIN- ODER AUSGEBLENDET) -->
+        <a id="external-link-btn" href="#" target="_blank" class="btn-external-link hidden">🔍 Zur externen Quellenkritik</a>
     </div>
 
 </div>
@@ -260,8 +285,10 @@
             task: "1) <b>Erläutere</b> zunächst die Position der Geschichtswissenschaft zur Gründung Roms. Fülle dafür das Notizbuch aus.<br><br>2) Finde dich danach mit deinem Sitznachbarn oder Sitznachbarin zusammen und <b>vergleicht</b> eure Ergebnisse! Ergänzt euer Notizbuch gegebenenfalls.",
             question: "Deine Ausarbeitung zu Aufgabe 1:",
             isCustomLayout: true, 
+            hasExternalLink: true,
+            externalLinkTarget: "aussenQuellenkritik.png",
             htmlContent: `
-                <!-- BILD DER KAPITOLINISCHEN WÖLFIN (JETZT GANZ OBEN) -->
+                <!-- BILD DER KAPITOLINISCHEN WÖLFIN -->
                 <div class="image-container">
                     <img src="woelfin.jpg" alt="Kapitolinische Wölfin" class="material-img">
                     <div class="image-caption">
@@ -301,6 +328,7 @@
             task: "Analysiere den Erfolg der römischen Armee. Notiere die wichtigsten Gründe im Notizbuch.",
             question: "Welche Faktoren machten die römische Armee so erfolgreich?",
             isCustomLayout: false,
+            hasExternalLink: false,
             text: "Durch disziplinierte Legionen und geschickte Bündnisse breitete sich Rom über den gesamten Mittelmeerraum aus. Aus der kleinen Republik wurde ein riesiges Weltreich (Imperium Romanum).",
         }
     };
@@ -328,6 +356,15 @@
                     <p>${data.text}</p>
                 </div>
             `;
+        }
+
+        // Externen Link-Button prüfen und einstellen
+        const extBtn = document.getElementById('external-link-btn');
+        if (data.hasExternalLink) {
+            extBtn.href = data.externalLinkTarget;
+            extBtn.classList.remove('hidden');
+        } else {
+            extBtn.classList.add('hidden');
         }
 
         // Gespeicherte Antwort laden
