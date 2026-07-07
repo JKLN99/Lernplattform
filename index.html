@@ -17,7 +17,7 @@
             align-items: center;
         }
 
-        /* --- NEUE KOPFZEILE (BANNER) --- */
+        /* --- KOPFZEILE (BANNER) --- */
         .portal-header {
             width: 100%;
             background-color: #4e2a28; /* Dunkles Römisch-Braun/Rot aus deinem Screenshot */
@@ -26,9 +26,12 @@
             box-sizing: border-box;
             margin-bottom: 30px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: space-between; /* Schiebt Text nach links und Button nach rechts */
+            align-items: center;
         }
 
-        .portal-header h1 {
+        .header-text h1 {
             margin: 0;
             font-size: 20px;
             text-align: left;
@@ -38,11 +41,32 @@
             gap: 8px;
         }
 
-        .portal-header p {
+        .header-text p {
             margin: 5px 0 0 0;
             font-size: 15px;
             opacity: 0.9;
             text-align: left;
+        }
+
+        /* --- STYLING FÜR DEN MUSIK-BUTTON --- */
+        .btn-audio-toggle {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 8px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .btn-audio-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: scale(1.03);
         }
 
         /* --- INHALTS-CONTAINER --- */
@@ -257,15 +281,18 @@
 </head>
 <body>
 
-<!-- ================= FESTE KOPFZEILE (AUF ALLEN SEITEN) ================= -->
 <div class="portal-header">
-    <h1>KLN ⚽</h1>
-    <p>Klasse 6</p>
+    <div class="header-text">
+        <h1>KLN ⚽</h1>
+        <p>Klasse 6</p>
+    </div>
+    <button class="btn-audio-toggle" onclick="toggleMusic()" id="music-btn">
+        🎵 Musik an
+    </button>
 </div>
 
 <div class="container">
 
-    <!-- ================= STARTSEITE ================= -->
     <div id="start-page">
         <h2>Das Römische Reich</h2>
         <p style="text-align: center;">Wähle eine Mission aus, um dein Abenteuer zu beginnen!</p>
@@ -294,7 +321,6 @@
         </div>
     </div>
 
-    <!-- ================= SONDER-ÜBERSICHT FÜR MODUL M4 ================= -->
     <div id="m4-overview-page" class="hidden">
         <button class="btn-back" onclick="showStartPage()">← Zurück zur Übersicht</button>
         <h2>M4: Untergang des Römischen Reiches</h2>
@@ -312,22 +338,18 @@
         </div>
     </div>
 
-    <!-- ================= STANDARD MODUL-SEITE ================= -->
     <div id="module-page" class="hidden">
         <button id="btn-universal-back" class="btn-back" onclick="handleBackAction()">← Zurück</button>
         
         <h2 id="module-title">Modul Titel</h2>
         
-        <!-- Aufgabenstellung -->
         <div class="task-box">
             <h3>🎯 Aufgabenstellung</h3>
             <p id="module-task">Hier steht die Aufgabe...</p>
         </div>
         
-        <!-- Bereich für die Text-Kästen und Bilder -->
         <div id="materials-container"></div>
 
-        <!-- NOTIZBUCH -->
         <button class="notebook-toggle" onclick="toggleNotebook()">📖 Notizbuch öffnen / schließen</button>
         
         <div id="notebook-container" class="notebook hidden">
@@ -338,13 +360,35 @@
             <button class="btn-save" onclick="saveAnswer()">💾 Antwort im Modul speichern</button>
         </div>
 
-        <!-- EXTERNER ZUSATZ-BUTTON UNTEN (WIRD DYNAMISCH EIN- ODER AUSGEBLENDET) -->
         <a id="external-link-btn" href="#" target="_blank" class="btn-external-link hidden">🔍 Button-Text</a>
     </div>
 
 </div>
 
 <script>
+    // --- HINTERGRUND-SOUND EINRICHTEN ---
+    const bgSound = new Audio('hintergrund.mp3');
+    bgSound.loop = true;
+    bgSound.volume = 0.2; // 20% Lautstärke, angenehm im Hintergrund
+    let isMusicPlaying = false;
+
+    // Funktion zum manuellen Umschalten (Button-Klick)
+    function toggleMusic() {
+        const btn = document.getElementById('music-btn');
+        if (isMusicPlaying) {
+            bgSound.pause();
+            btn.innerHTML = "🎵 Musik an";
+            isMusicPlaying = false;
+        } else {
+            bgSound.play().then(() => {
+                btn.innerHTML = "⏸️ Musik aus";
+                isMusicPlaying = true;
+            }).catch(error => {
+                alert("Bitte klicke erst auf die Seite, damit der Browser den Ton erlaubt!");
+            });
+        }
+    }
+
     // --- DATEN DER MODULE ---
     const modulesData = {
         m1: {
@@ -375,7 +419,7 @@
                 <div class="source-box">
                     <h3>📜 Q1 | Die Gründungssage Roms</h3>
                     <div class="text-with-lines">
-                        <div class="line-p"><div class="line-number">1</div><div class="line-text"><b>Die Sage von der Gründung Roms im Jahr 753 v. Chr.:</b> Aeneas, der von der Göttin Aphrodite abstammte, konnte sich aus dem brennenden Troja retten. Nach zehn Jahren Irrfahrt landete er in Mittelitalien und heiratete eine dortige Königstochter. Seine Nachkommen wurden ebenfalls Könige.</div></div>
+                        <div class="line-p"><div class="line-number">1</div><div class="line-text"><b>Die Sage von der Gründung Roms im Jahr 753 v. Chr.:</b> Aeneas, der von der Göttin Aphrodite abstammte, konnte sich aus dem brennenden Troja retten. Nach zehn Jahren Irrfahrt landete er in Mittelitalien und interimierte eine dortige Königstochter. Seine Nachkommen wurden ebenfalls Könige.</div></div>
                         <div class="line-p"><div class="line-number">5</div><div class="line-text">Einer davon war Numitor, ein gutherziger Mann. Doch kurz nach seinem Amtsantritt setzte sein machtgieriger Bruder Amulius ihn ab und ernannte sich selbst zum König. Um Konkurrenz zu verhindern, tötete Amulius Numitors Sohn und zwang Numitors Tochter, Priesterin der Göttin Vesta zu werden...</div></div>
                         <div class="line-p"><div class="line-number">10</div><div class="line-text">denn diese Vestalinnen durften nicht heiraten und keine Kinder bekommen. So herrschte Amulius viele Jahre. Eines Tages erschien Numitors Tochter am Fluss Tiber der Gott Mars. Die junge Priesterin wurde von ihm schwanger und brachte Zwillinge zur Welt. Als Amulius davon erfuhr, wollte er die Kinder töten.</div></div>
                         <div class="line-p"><div class="line-number">15</div><div class="line-text">Doch ihre Mutter legte sie in einen Korb, den sie in den Fluss Tiber setzte. Amulius ließ die Mutter der Kinder daraufhin ins Gefängnis werfen. Durch den Schutz ihres Vaters Mars ertranken die Zwillinge nicht und wurden ans Ufer getrieben. Als sie dort vor Hunger schrien, säugte eine Wölfin sie mit ihrer Milch.</div></div>
@@ -439,21 +483,19 @@
     };
 
     let currentModuleId = "";
-    
-    // Hintergrund-Sound vorbereiten
-const bgSound = new Audio('hintergrund.mp3');
-bgSound.loop = true; // Aktiviert die Dauerschleife
-bgSound.volume = 0.2; // Setzt die Lautstärke auf 20% (damit es dezent im Hintergrund bleibt)
 
     // --- NAVIGATION ---
     function openModule(moduleId) {
-    // Sound starten, sobald der Nutzer das erste Mal ein Modul anklickt
-    bgSound.play().catch(error => {
-        console.log("Autoplay von Browser blockiert, bis mehr Interaktion stattfindet.");
-    });
+        // AUTOMATISCHER START: Wenn die Musik noch aus ist, starte sie beim ersten Modulklick
+        if (!isMusicPlaying) {
+            bgSound.play().then(() => {
+                document.getElementById('music-btn').innerHTML = "⏸️ Musik aus";
+                isMusicPlaying = true;
+            }).catch(error => {
+                console.log("Autoplay blockiert, bis eine stärkere Nutzerinteraktion stattfindet.");
+            });
+        }
 
-    if (moduleId === 'm4') {
-        // ... (hier geht dein normaler Code weiter)
         if (moduleId === 'm4') {
             document.getElementById('start-page').classList.add('hidden');
             document.getElementById('module-page').classList.add('hidden');
