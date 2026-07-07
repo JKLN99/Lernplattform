@@ -257,6 +257,7 @@
 </head>
 <body>
 
+<!-- ================= FESTE KOPFZEILE (AUF ALLEN SEITEN) ================= -->
 <div class="portal-header">
     <h1>KLN ⚽</h1>
     <p>Klasse 6</p>
@@ -264,6 +265,7 @@
 
 <div class="container">
 
+    <!-- ================= STARTSEITE ================= -->
     <div id="start-page">
         <h2>Das Römische Reich</h2>
         <p style="text-align: center;">Wähle eine Mission aus, um dein Abenteuer zu beginnen!</p>
@@ -292,6 +294,7 @@
         </div>
     </div>
 
+    <!-- ================= SONDER-ÜBERSICHT FÜR MODUL M4 ================= -->
     <div id="m4-overview-page" class="hidden">
         <button class="btn-back" onclick="showStartPage()">← Zurück zur Übersicht</button>
         <h2>M4: Untergang des Römischen Reiches</h2>
@@ -309,18 +312,22 @@
         </div>
     </div>
 
+    <!-- ================= STANDARD MODUL-SEITE ================= -->
     <div id="module-page" class="hidden">
         <button id="btn-universal-back" class="btn-back" onclick="handleBackAction()">← Zurück</button>
         
         <h2 id="module-title">Modul Titel</h2>
         
+        <!-- Aufgabenstellung -->
         <div class="task-box">
             <h3>🎯 Aufgabenstellung</h3>
             <p id="module-task">Hier steht die Aufgabe...</p>
         </div>
         
+        <!-- Bereich für die Text-Kästen und Bilder -->
         <div id="materials-container"></div>
 
+        <!-- NOTIZBUCH -->
         <button class="notebook-toggle" onclick="toggleNotebook()">📖 Notizbuch öffnen / schließen</button>
         
         <div id="notebook-container" class="notebook hidden">
@@ -331,6 +338,7 @@
             <button class="btn-save" onclick="saveAnswer()">💾 Antwort im Modul speichern</button>
         </div>
 
+        <!-- EXTERNER ZUSATZ-BUTTON UNTEN (WIRD DYNAMISCH EIN- ODER AUSGEBLENDET) -->
         <a id="external-link-btn" href="#" target="_blank" class="btn-external-link hidden">🔍 Button-Text</a>
     </div>
 
@@ -418,7 +426,7 @@
             question: "Welche inneren Krisen schadeten dem Reich?",
             isCustomLayout: false,
             hasExternalLink: false,
-            text: "<b>Innere Krisen:</b> Häufige Bürgerkriege um die Kaiserkrone, eine hohe Inflation, Korruption in der Verwaltung und wirtschaftliche Probleme schwächten Rom über Jahrzete. Zudem führte die Teilung des Reiches in Westrom und Ostrom zu einer Spaltung der Kräfte."
+            text: "<b>Innere Krisen:</b> Häufige Bürgerkriege um die Kaiserkrone, eine hohe Inflation, Korruption in der Verwaltung und wirtschaftliche Probleme schwächten Rom über Jahrzehnte. Zudem führte die Teilung des Reiches in Westrom und Ostrom zu einer Spaltung der Kräfte."
         },
         m5: {
             title: "M5: Gesellschaft im Römischen Reich",
