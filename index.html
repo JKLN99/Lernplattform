@@ -510,6 +510,18 @@
             document.getElementById('module-page').classList.add('hidden');
             document.getElementById('m4-overview-page').classList.remove('hidden');
             return;
+            if (moduleId === 'm4') { 
+        // HIER die Zeile einfügen, damit auch M4 als "letzter Standort" gespeichert wird:
+        localStorage.setItem('lastModule', moduleId);
+
+        document.getElementById('start-page').classList.add('hidden'); 
+        document.getElementById('module-page').classList.add('hidden'); 
+        document.getElementById('m4-overview-page').classList.remove('hidden'); 
+        return; 
+    }
+
+    // Und hier speicherst du für alle anderen Module:
+    localStorage.setItem('lastModule', moduleId);
         }
 
         currentModuleId = moduleId;
