@@ -432,20 +432,21 @@
 
     let currentModuleId = "";
 
-    // Hintergrund-Sound vorbereiten
-const bgSound = new Audio('hintergrund.mp3');
-bgSound.loop = true; // Aktiviert die Dauerschleife
-bgSound.volume = 0.2; // Setzt die Lautstärke auf 20% (damit es dezent im Hintergrund bleibt)
-
-    // --- NAVIGATION ---
+ // --- NAVIGATION ---
     function openModule(moduleId) {
-    // Sound starten, sobald der Nutzer das erste Mal ein Modul anklickt
-    bgSound.play().catch(error => {
-        console.log("Autoplay von Browser blockiert, bis mehr Interaktion stattfindet.");
-    });
+        // VERSUCHEN, DEN SOUND ZU STARTEN
+        if (!isMusicPlaying) {
+            bgSound.play().then(() => {
+                document.getElementById('music-btn').innerHTML = "⏸️ Musik aus";
+                isMusicPlaying = true;
+            }).catch(error => {
+                // FALLS DER BROWSER BLOCKIERT: 
+                // Wir loggen es nur in der Konsole, blockieren aber nicht den Schüler!
+                console.log("Musik-Autoplay vom Browser blockiert. Modul öffnet sich trotzdem.");
+            });
+        }
 
-    if (moduleId === 'm4') {
-        // ... (hier geht dein normaler Code weiter)
+        // Falls es Modul M4 ist, zur Sonderübersicht weiterleiten
         if (moduleId === 'm4') {
             document.getElementById('start-page').classList.add('hidden');
             document.getElementById('module-page').classList.add('hidden');
@@ -455,6 +456,12 @@ bgSound.volume = 0.2; // Setzt die Lautstärke auf 20% (damit es dezent im Hinte
 
         currentModuleId = moduleId;
         const data = modulesData[moduleId];
+
+        // Überprüfen, ob Daten für das Modul existieren (Sicherheitscheck)
+        if (!data) {
+            console.error("Keine Daten für Modul gefunden: " + moduleId);
+            return;
+        }
 
         document.getElementById('module-title').innerText = data.title;
         document.getElementById('module-task').innerHTML = data.task;
@@ -484,10 +491,12 @@ bgSound.volume = 0.2; // Setzt die Lautstärke auf 20% (damit es dezent im Hinte
         const savedAnswer = localStorage.getItem('answer_' + moduleId);
         document.getElementById('notebook-answer').value = savedAnswer ? savedAnswer : "";
 
+        // Seiten umschalten (WICHTIG: Erst hier werden die Masken sichtbar!)
         document.getElementById('start-page').classList.add('hidden');
         document.getElementById('m4-overview-page').classList.add('hidden');
         document.getElementById('module-page').classList.remove('hidden');
         document.getElementById('notebook-container').classList.add('hidden');
+    }
     }
 
     function handleBackAction() {
