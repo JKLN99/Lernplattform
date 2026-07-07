@@ -26,7 +26,7 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        h1, h2 {
+        h1, h2, h3 {
             color: #8b0000; /* Römisches Rot */
             text-align: center;
         }
@@ -35,7 +35,7 @@
             display: none !important;
         }
 
-        /* --- STARTSEITE / QUEST-MAP --- */
+        /* --- STARTSEITE / QUEST-MAP & UNTERMENÜS --- */
         .map-grid {
             display: flex;
             justify-content: space-around;
@@ -102,6 +102,7 @@
         .task-box h3 {
             margin-top: 0;
             color: #333;
+            text-align: left;
         }
 
         /* --- IMAGE STYLING --- */
@@ -257,13 +258,31 @@
         </div>
     </div>
 
-    <!-- ================= MODUL-SEITE ================= -->
-    <div id="module-page" class="hidden">
+    <!-- ================= SONDER-ÜBERSICHT FÜR MODUL M4 ================= -->
+    <div id="m4-overview-page" class="hidden">
         <button class="btn-back" onclick="showStartPage()">← Zurück zur Übersicht</button>
+        <h2>M4: Untergang des Römischen Reiches</h2>
+        <p style="text-align: center;">Wähle einen Schwerpunkt aus, um die Ursachen zu untersuchen:</p>
+        
+        <div class="map-grid">
+            <div class="quest-card" onclick="openModule('m4_aussere')">
+                <h3>⚔️ Äußere Ursachen</h3>
+                <p>Kriege, Völkerwanderung & Grenzen</p>
+            </div>
+            <div class="quest-card" onclick="openModule('m4_innere')">
+                <h3>🏛️ Innere Ursachen</h3>
+                <p>Wirtschaft, Krisen & Machtkämpfe</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= STANDARD MODUL-SEITE ================= -->
+    <div id="module-page" class="hidden">
+        <button id="btn-universal-back" class="btn-back" onclick="handleBackAction()">← Zurück</button>
         
         <h2 id="module-title">Modul Titel</h2>
         
-        <!-- Aufgabenstellung ganz oben platziert -->
+        <!-- Aufgabenstellung -->
         <div class="task-box">
             <h3>🎯 Aufgabenstellung</h3>
             <p id="module-task">Hier steht die Aufgabe...</p>
@@ -301,38 +320,15 @@
             externalLinkText: "🔍 Zur externen Quellenkritik",
             externalLinkTarget: "aussenQuellenkritik.png",
             htmlContent: `
-                <!-- BILD DER KAPITOLINISCHEN WÖLFIN -->
                 <div class="image-container">
                     <img src="woelfin.jpg" alt="Kapitolinische Wölfin" class="material-img">
                     <div class="image-caption">
-                        Quelle: Kapitolinische Wölfin (Lupa Capitolina): Wölfin mit Romulus und Remus, Bronze, 12. Jahrhundert n. Chr. (laut C14-Datierung; nach traditioneller Sicht etruskisch aus dem 5. Jahrhundert v. Chr.), Zwillinge hinzugefügt im 15. Jahrhundert.
+                        Quelle: Kapitolinische Wölfin (Lupa Capitolina): Wölfin mit Romulus und Remus, Bronze, 12. Jahrhundert n. Chr.
                     </div>
                 </div>
-
-                <!-- KASTEN D1 -->
                 <div class="material-box">
                     <h3>📊 D1 | Die Gründung Roms: Was die Geschichtswissenschaft berichtet</h3>
-                    <div class="text-with-lines">
-                        <div class="line-p"><div class="line-number">1</div><div class="line-text"><b>Die ersten Siedlungen:</b> Etwa um 1000 v. Chr. ließ sich das Volk der Latiner am Fluss Tiber in Mittelitalien nieder. Sie lebten als Ackerbauern und Hirten. Auf den Hügeln Palatin und Quirinal entstanden zu dieser Zeit kleine Dörfer aus einfachen Hütten.</div></div>
-                        <div class="line-p"><div class="line-number">5</div><div class="line-text">Um etwa 700 v. Chr. existierten schon größere Dörfer auf allen sieben Hügeln. <b>Latiner und Etrusker:</b> Um etwa 800 v. Chr. wanderten Etrusker von Norden her in die Gegend ein. Die Herkunft dieses Volkes ist unbekannt. Sicher ist aber, dass die Etrusker Kontakt zur griechischen Hochkultur gehabt hatten.</div></div>
-                        <div class="line-p"><div class="line-number">10</div><div class="line-text">Vielleicht stammten sie ursprünglich sogar aus Griechenland. Archäologische Fundstücke von soliden Steinhäusern, Schmuckstücken und Waffen beweisen, dass es sich um ein kulturell hoch entwickeltes Volk handelte. Die Etrusker siedelten zunächst auf der anderen Seite des Flusses Tiber.</div></div>
-                        <div class="line-p"><div class="line-number">15</div><div class="line-text">Mit der Zeit aber gewannen sie die Oberhand über das Volk der Latiner, deren Hütten auf der gegenüberliegenden Flussseite auf den sieben Hügeln standen. <b>Die Gründung der Stadt Rom:</b> Wahrscheinlich waren es die Etrusker, die die Dörfer der Latiner zu einer echten Stadt verschmolzen und Rom gründeten.</div></div>
-                        <div class="line-p"><div class="line-number">20</div><div class="line-text">Der Name „Rom" leitet sich vermutlich von dem etruskischen Königsgeschlecht der Ruma ab. Wann die Stadt Rom genau gegründet wurde, können die Wissenschaftler/innen nicht sagen.</div></div>
-                    </div>
-                </div>
-
-                <!-- KASTEN Q1 -->
-                <div class="source-box">
-                    <h3>📜 Q1 | Die Gründungssage Roms</h3>
-                    <div class="text-with-lines">
-                        <div class="line-p"><div class="line-number">1</div><div class="line-text"><b>Die Sage von der Gründung Roms im Jahr 753 v. Chr.:</b> Aeneas, der von der Göttin Aphrodite abstammte, konnte sich aus dem brennenden Troja retten. Nach zehn Jahren Irrfahrt landete er in Mittelitalien und heiratete eine dortige Königstochter. Seine Nachkommen wurden ebenfalls Könige.</div></div>
-                        <div class="line-p"><div class="line-number">5</div><div class="line-text">Einer davon war Numitor, ein gutherziger Mann. Doch kurz nach seinem Amtsantritt setzte sein machtgieriger Bruder Amulius ihn ab und ernannte sich selbst zum König. Um Konkurrenz zu verhindern, tötete Amulius Numitors Sohn und zwang Numitors Tochter, Priesterin der Göttin Vesta zu werden...</div></div>
-                        <div class="line-p"><div class="line-number">10</div><div class="line-text">denn diese Vestalinnen durften nicht heiraten und keine Kinder bekommen. So herrschte Amulius viele Jahre. Eines Tages erschien Numitors Tochter am Fluss Tiber der Gott Mars. Die junge Priesterin wurde von ihm schwanger und brachte Zwillinge zur Welt. Als Amulius davon erfuhr, wollte er die Kinder töten.</div></div>
-                        <div class="line-p"><div class="line-number">15</div><div class="line-text">Doch ihre Mutter legte sie in einen Korb, den sie in den Fluss Tiber setzte. Amulius ließ die Mutter der Kinder daraufhin ins Gefängnis werfen. Durch den Schutz ihres Vaters Mars ertranken die Zwillinge nicht und wurden ans Ufer getrieben. Als sie dort vor Hunger schrien, säugte eine Wölfin sie mit ihrer Milch.</div></div>
-                        <div class="line-p"><div class="line-number">20</div><div class="line-text">Kurz darauf fand ein Hirte die Zwillinge und nahm sie mit nach Hause. Jahre später erfuhren die beiden - sie hießen Romulus und Remus - als junge Männer von ihrer wahren königlichen Herkunft. Sie riefen ihre Freunde zusammen, stürmten den Palast des Amulius und töteten ihn.</div></div>
-                        <div class="line-p"><div class="line-number">25</div><div class="line-text">Dann befreiten sie ihre Mutter und setzten ihren alten Großvater Numitor wieder als König ein. Sie selbst wollten eine neue Stadt gründen, und zwar dort, wo die Wölfin sie gesäugt hatte. Durch einen Götterentscheid sollte Romulus der Gründer werden.</div></div>
-                        <div class="line-p"><div class="line-number">30</div><div class="line-text">Als er die Stadtgrenze mit einem Pflug kennzeichnete, hüpfte Remus voller Spott über die Furche hinweg. Wutentbrannt rief Romulus: „So soll es jedem gehen, der meine Stadt angreift!" Und er brachte Remus um. Die neue Stadt nannte Romulus nach ihm selbst: Rom.</div></div>
-                    </div>
+                    <p><b>Die ersten Siedlungen:</b> Etwa um 1000 v. Chr. ließ sich das Volk der Latiner am Fluss Tiber nieder...</p>
                 </div>
             `
         },
@@ -345,13 +341,9 @@
             externalLinkText: "📄 Zum Kartenmaterial (PDF)",
             externalLinkTarget: "Kartenmaterial.pdf",
             htmlContent: `
-                <!-- KASTEN D1 FÜR M2 -->
                 <div class="material-box">
                     <h3>🗺️ D1 | Geschichtskarte des Römischen Reiches</h3>
-                    <div class="text-with-lines">
-                        <div class="line-p"><div class="line-number">1</div><div class="line-text">Durch disziplinierte Legionen und geschickte Bündnisse breitete sich Rom über den gesamten Mittelmeerraum aus.</div></div>
-                        <div class="line-p"><div class="line-number">3</div><div class="line-text">Aus der kleinen Republik am Tiber wurde im Laufe der Jahrhunderte ein riesiges Weltreich (Imperium Romanum), das sich über drei Kontinente erstreckte.</div></div>
-                    </div>
+                    <p>Durch disziplinierte Legionen und geschickte Bündnisse breitete sich Rom über den gesamten Mittelmeerraum aus.</p>
                 </div>
             `
         },
@@ -361,15 +353,24 @@
             question: "Deine Ausarbeitung zu Modul M3:",
             isCustomLayout: false,
             hasExternalLink: false,
-            text: "Hier kannst du bald die Materialien und Quellen zur römischen Herrschaft, den Kaisern oder der Republik einfügen."
+            text: "Hier kannst du bald die Materialien und Quellen zur römischen Herrschaft einfügen."
         },
-        m4: {
-            title: "M4: Untergang des Römischen Reiches",
-            task: "Hier wird die Aufgabenstellung für das Modul M4 stehen.",
-            question: "Deine Ausarbeitung zu Modul M4:",
+        // --- DIE ZWEI NEUEN UNTERBEREICHE FÜR M4 ---
+        m4_aussere: {
+            title: "M4: Äußere Ursachen des Untergangs",
+            task: "<b>Arbeite heraus</b>, welche Rolle die Angriffe von außen und die Völkerwanderung beim Zerfall des Reiches spielten.",
+            question: "Welche äußeren Faktoren führten zum Untergang?",
             isCustomLayout: false,
             hasExternalLink: false,
-            text: "Hier kannst du bald die Materialien zum Zerfall des Reiches, der Völkerwanderung oder den inneren Krisen einfügen."
+            text: "<b>Angriffe von außen:</b> Ab dem 3. Jahrhundert n. Chr. gerieten die römischen Grenzen zunehmend unter Druck durch germanische Stämme im Norden und das Sassanidenreich im Osten. Die sogenannte Völkerwanderung brachte ganze Völkerschaften in Bewegung, die die römischen Grenzverteidigungen überwanden."
+        },
+        m4_innere: {
+            title: "M4: Innere Ursachen des Untergangs",
+            task: "<b>Erkläre</b> die wirtschaftlichen und politischen Krisenherde, die das Reich von innen heraus geschwächt haben.",
+            question: "Welche inneren Krisen schadeten dem Reich?",
+            isCustomLayout: false,
+            hasExternalLink: false,
+            text: "<b>Innere Krisen:</b> Häufige Bürgerkriege um die Kaiserkrone, eine hohe Inflation, Korruption in der Verwaltung und wirtschaftliche Probleme schwächten Rom über Jahrzehnte. Zudem führte die Teilung des Reiches in Westrom und Ostrom zu einer Spaltung der Kräfte."
         },
         m5: {
             title: "M5: Gesellschaft im Römischen Reich",
@@ -385,6 +386,14 @@
 
     // --- NAVIGATION ---
     function openModule(moduleId) {
+        // Sonderfall für M4 Hauptauswahl abfangen
+        if (moduleId === 'm4') {
+            document.getElementById('start-page').classList.add('hidden');
+            document.getElementById('module-page').classList.add('hidden');
+            document.getElementById('m4-overview-page').classList.remove('hidden');
+            return;
+        }
+
         currentModuleId = moduleId;
         const data = modulesData[moduleId];
 
@@ -406,7 +415,7 @@
             `;
         }
 
-        // Externen Link-Button (Bild oder PDF) prüfen und einstellen
+        // Externen Link-Button prüfen
         const extBtn = document.getElementById('external-link-btn');
         if (data.hasExternalLink) {
             extBtn.href = data.externalLinkTarget;
@@ -422,13 +431,27 @@
 
         // Seiten umschalten
         document.getElementById('start-page').classList.add('hidden');
+        document.getElementById('m4-overview-page').classList.add('hidden');
         document.getElementById('module-page').classList.remove('hidden');
         document.getElementById('notebook-container').classList.add('hidden');
+    }
+
+    // Steuert das Verhalten des Zurück-Buttons auf den Modulseiten
+    function handleBackAction() {
+        if (currentModuleId === 'm4_aussere' || currentModuleId === 'm4_innere') {
+            // Wenn man in einem M4-Unterbereich war, geht es zurück zur M4-Übersicht
+            document.getElementById('module-page').classList.add('hidden');
+            document.getElementById('m4-overview-page').classList.remove('hidden');
+        } else {
+            // Alle anderen Module gehen zurück zum Hauptmenü
+            showStartPage();
+        }
     }
 
     function showStartPage() {
         document.getElementById('start-page').classList.remove('hidden');
         document.getElementById('module-page').classList.add('hidden');
+        document.getElementById('m4-overview-page').classList.add('hidden');
     }
 
     // --- NOTIZBUCH LOGIK ---
