@@ -17,7 +17,7 @@
             align-items: center;
         }
 
-        /* --- KOPFZEILE (BANNER) --- */
+        /* --- NEUE KOPFZEILE (BANNER) --- */
         .portal-header {
             width: 100%;
             background-color: #4e2a28; /* Dunkles Römisch-Braun/Rot aus deinem Screenshot */
@@ -26,12 +26,9 @@
             box-sizing: border-box;
             margin-bottom: 30px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-            display: flex;
-            justify-content: space-between; /* Schiebt Text nach links und Button nach rechts */
-            align-items: center;
         }
 
-        .header-text h1 {
+        .portal-header h1 {
             margin: 0;
             font-size: 20px;
             text-align: left;
@@ -41,32 +38,11 @@
             gap: 8px;
         }
 
-        .header-text p {
+        .portal-header p {
             margin: 5px 0 0 0;
             font-size: 15px;
             opacity: 0.9;
             text-align: left;
-        }
-
-        /* --- STYLING FÜR DEN MUSIK-BUTTON --- */
-        .btn-audio-toggle {
-            background-color: rgba(255, 255, 255, 0.15);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            padding: 8px 14px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: background 0.2s, transform 0.1s;
-        }
-
-        .btn-audio-toggle:hover {
-            background-color: rgba(255, 255, 255, 0.3);
-            transform: scale(1.03);
         }
 
         /* --- INHALTS-CONTAINER --- */
@@ -282,13 +258,8 @@
 <body>
 
 <div class="portal-header">
-    <div class="header-text">
-        <h1>KLN ⚽</h1>
-        <p>Klasse 6</p>
-    </div>
-    <button class="btn-audio-toggle" onclick="toggleMusic()" id="music-btn">
-        🎵 Musik an
-    </button>
+    <h1>KLN ⚽</h1>
+    <p>Klasse 6</p>
 </div>
 
 <div class="container">
@@ -366,29 +337,6 @@
 </div>
 
 <script>
-    // --- HINTERGRUND-SOUND EINRICHTEN ---
-    const bgSound = new Audio('hintergrund.mp3');
-    bgSound.loop = true;
-    bgSound.volume = 0.2; // 20% Lautstärke, angenehm im Hintergrund
-    let isMusicPlaying = false;
-
-    // Funktion zum manuellen Umschalten (Button-Klick)
-    function toggleMusic() {
-        const btn = document.getElementById('music-btn');
-        if (isMusicPlaying) {
-            bgSound.pause();
-            btn.innerHTML = "🎵 Musik an";
-            isMusicPlaying = false;
-        } else {
-            bgSound.play().then(() => {
-                btn.innerHTML = "⏸️ Musik aus";
-                isMusicPlaying = true;
-            }).catch(error => {
-                alert("Bitte klicke erst auf die Seite, damit der Browser den Ton erlaubt!");
-            });
-        }
-    }
-
     // --- DATEN DER MODULE ---
     const modulesData = {
         m1: {
@@ -401,7 +349,7 @@
             externalLinkTarget: "aussenQuellenkritik.png",
             htmlContent: `
                 <div class="image-container">
-                    <img src="Lupa_Capitolina,_Rome.jpg" alt="Kapitolinische Wölfin" class="material-img">
+                    <img src="woelfin.jpg" alt="Kapitolinische Wölfin" class="material-img">
                     <div class="image-caption">
                         Quelle: Kapitolinische Wölfin (Lupa Capitolina): Wölfin mit Romulus und Remus, Bronze, 12. Jahrhundert n. Chr. (laut C14-Datierung; nach traditioneller Sicht etruskisch aus dem 5. Jahrhundert v. Chr.), Zwillinge hinzugefügt im 15. Jahrhundert.
                     </div>
@@ -419,7 +367,7 @@
                 <div class="source-box">
                     <h3>📜 Q1 | Die Gründungssage Roms</h3>
                     <div class="text-with-lines">
-                        <div class="line-p"><div class="line-number">1</div><div class="line-text"><b>Die Sage von der Gründung Roms im Jahr 753 v. Chr.:</b> Aeneas, der von der Göttin Aphrodite abstammte, konnte sich aus dem brennenden Troja retten. Nach zehn Jahren Irrfahrt landete er in Mittelitalien und interimierte eine dortige Königstochter. Seine Nachkommen wurden ebenfalls Könige.</div></div>
+                        <div class="line-p"><div class="line-number">1</div><div class="line-text"><b>Die Sage von der Gründung Roms im Jahr 753 v. Chr.:</b> Aeneas, der von der Göttin Aphrodite abstammte, konnte sich aus dem brennenden Troja retten. Nach zehn Jahren Irrfahrt landete er in Mittelitalien und heiratete eine dortige Königstochter. Seine Nachkommen wurden ebenfalls Könige.</div></div>
                         <div class="line-p"><div class="line-number">5</div><div class="line-text">Einer davon war Numitor, ein gutherziger Mann. Doch kurz nach seinem Amtsantritt setzte sein machtgieriger Bruder Amulius ihn ab und ernannte sich selbst zum König. Um Konkurrenz zu verhindern, tötete Amulius Numitors Sohn und zwang Numitors Tochter, Priesterin der Göttin Vesta zu werden...</div></div>
                         <div class="line-p"><div class="line-number">10</div><div class="line-text">denn diese Vestalinnen durften nicht heiraten und keine Kinder bekommen. So herrschte Amulius viele Jahre. Eines Tages erschien Numitors Tochter am Fluss Tiber der Gott Mars. Die junge Priesterin wurde von ihm schwanger und brachte Zwillinge zur Welt. Als Amulius davon erfuhr, wollte er die Kinder töten.</div></div>
                         <div class="line-p"><div class="line-number">15</div><div class="line-text">Doch ihre Mutter legte sie in einen Korb, den sie in den Fluss Tiber setzte. Amulius ließ die Mutter der Kinder daraufhin ins Gefängnis werfen. Durch den Schutz ihres Vaters Mars ertranken die Zwillinge nicht und wurden ans Ufer getrieben. Als sie dort vor Hunger schrien, säugte eine Wölfin sie mit ihrer Milch.</div></div>
@@ -470,7 +418,7 @@
             question: "Welche inneren Krisen schadeten dem Reich?",
             isCustomLayout: false,
             hasExternalLink: false,
-            text: "<b>Innere Krisen:</b> Häufige Bürgerkriege um die Kaiserkrone, eine hohe Inflation, Korruption in der Verwaltung und wirtschaftliche Probleme schwächten Rom über Jahrzehnte. Zudem führte die Teilung des Reiches in Westrom und Ostrom zu einer Spaltung der Kräfte."
+            text: "<b>Innere Krisen:</b> Häufige Bürgerkriege um die Kaiserkrone, eine hohe Inflation, Korruption in der Verwaltung und wirtschaftliche Probleme schwächten Rom über Jahrzete. Zudem führte die Teilung des Reiches in Westrom und Ostrom zu einer Spaltung der Kräfte."
         },
         m5: {
             title: "M5: Gesellschaft im Römischen Reich",
@@ -486,16 +434,6 @@
 
     // --- NAVIGATION ---
     function openModule(moduleId) {
-        // AUTOMATISCHER START: Wenn die Musik noch aus ist, starte sie beim ersten Modulklick
-        if (!isMusicPlaying) {
-            bgSound.play().then(() => {
-                document.getElementById('music-btn').innerHTML = "⏸️ Musik aus";
-                isMusicPlaying = true;
-            }).catch(error => {
-                console.log("Autoplay blockiert, bis eine stärkere Nutzerinteraktion stattfindet.");
-            });
-        }
-
         if (moduleId === 'm4') {
             document.getElementById('start-page').classList.add('hidden');
             document.getElementById('module-page').classList.add('hidden');
