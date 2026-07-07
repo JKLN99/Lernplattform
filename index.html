@@ -206,6 +206,7 @@
 
 <div class="container">
 
+    <!-- ================= STARTSEITE ================= -->
     <div id="start-page">
         <h1>Das Römische Reich</h1>
         <p style="text-align: center;">Wähle eine Mission aus, um dein Abenteuer zu beginnen!</p>
@@ -222,18 +223,22 @@
         </div>
     </div>
 
+    <!-- ================= MODUL-SEITE ================= -->
     <div id="module-page" class="hidden">
         <button class="btn-back" onclick="showStartPage()">← Zurück zur Übersicht</button>
         
         <h2 id="module-title">Modul Titel</h2>
         
+        <!-- Aufgabenstellung ganz oben platziert -->
         <div class="task-box">
             <h3>🎯 Aufgabenstellung</h3>
             <p id="module-task">Hier steht die Aufgabe...</p>
         </div>
         
+        <!-- Bereich für die Text-Kästen und Bilder -->
         <div id="materials-container"></div>
 
+        <!-- NOTIZBUCH -->
         <button class="notebook-toggle" onclick="toggleNotebook()">📖 Notizbuch öffnen / schließen</button>
         
         <div id="notebook-container" class="notebook hidden">
@@ -256,14 +261,15 @@
             question: "Deine Ausarbeitung zu Aufgabe 1:",
             isCustomLayout: true, 
             htmlContent: `
-            
+                <!-- BILD DER KAPITOLINISCHEN WÖLFIN (JETZT GANZ OBEN) -->
                 <div class="image-container">
                     <img src="woelfin.jpg" alt="Kapitolinische Wölfin" class="material-img">
                     <div class="image-caption">
                         Quelle: Kapitolinische Wölfin (Lupa Capitolina): Wölfin mit Romulus und Remus, Bronze, 12. Jahrhundert n. Chr. (laut C14-Datierung; nach traditioneller Sicht etruskisch aus dem 5. Jahrhundert v. Chr.), Zwillinge hinzugefügt im 15. Jahrhundert.
                     </div>
                 </div>
-                
+
+                <!-- KASTEN D1 -->
                 <div class="material-box">
                     <h3>📊 D1 | Die Gründung Roms: Was die Geschichtswissenschaft berichtet</h3>
                     <div class="text-with-lines">
@@ -275,10 +281,11 @@
                     </div>
                 </div>
 
+                <!-- KASTEN Q1 -->
                 <div class="source-box">
                     <h3>📜 Q1 | Die Gründungssage Roms</h3>
                     <div class="text-with-lines">
-                        <div class="line-p"><div class="line-number">1</div><div class="line-text"><b>Die Sage von der Gründung Roms im Jahr 753 v. Chr.:</b> Aeneas, der von der Göttin Aphrodite abstammte, konnte sich aus dem brennenden Troja retten. Nach zehn Jahren Irrfahrt landete er in Mittelitalien und interimistisch eine dortige Königstochter. Seine Nachkommen wurden ebenfalls Könige.</div></div>
+                        <div class="line-p"><div class="line-number">1</div><div class="line-text"><b>Die Sage von der Gründung Roms im Jahr 753 v. Chr.:</b> Aeneas, der von der Göttin Aphrodite abstammte, konnte sich aus dem brennenden Troja retten. Nach zehn Jahren Irrfahrt landete er in Mittelitalien und heiratete eine dortige Königstochter. Seine Nachkommen wurden ebenfalls Könige.</div></div>
                         <div class="line-p"><div class="line-number">5</div><div class="line-text">Einer davon war Numitor, ein gutherziger Mann. Doch kurz nach seinem Amtsantritt setzte sein machtgieriger Bruder Amulius ihn ab und ernannte sich selbst zum König. Um Konkurrenz zu verhindern, tötete Amulius Numitors Sohn und zwang Numitors Tochter, Priesterin der Göttin Vesta zu werden...</div></div>
                         <div class="line-p"><div class="line-number">10</div><div class="line-text">denn diese Vestalinnen durften nicht heiraten und keine Kinder bekommen. So herrschte Amulius viele Jahre. Eines Tages erschien Numitors Tochter am Fluss Tiber der Gott Mars. Die junge Priesterin wurde von ihm schwanger und brachte Zwillinge zur Welt. Als Amulius davon erfuhr, wollte er die Kinder töten.</div></div>
                         <div class="line-p"><div class="line-number">15</div><div class="line-text">Doch ihre Mutter legte sie in einen Korb, den sie in den Fluss Tiber setzte. Amulius ließ die Mutter der Kinder daraufhin ins Gefängnis werfen. Durch den Schutz ihres Vaters Mars ertranken die Zwillinge nicht und wurden ans Ufer getrieben. Als sie dort vor Hunger schrien, säugte eine Wölfin sie mit ihrer Milch.</div></div>
@@ -287,7 +294,6 @@
                         <div class="line-p"><div class="line-number">30</div><div class="line-text">Als er die Stadtgrenze mit einem Pflug kennzeichnete, hüpfte Remus voller Spott über die Furche hinweg. Wutentbrannt rief Romulus: „So soll es jedem gehen, der meine Stadt angreift!" Und er brachte Remus um. Die neue Stadt nannte Romulus nach ihm selbst: Rom.</div></div>
                     </div>
                 </div>
-
             `
         },
         m2: {
@@ -351,3 +357,6 @@
         alert("Deine Antwort wurde erfolgreich in deinem Notizbuch gespeichert!");
     }
 </script>
+
+</body>
+</html>
