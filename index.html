@@ -514,6 +514,15 @@
   font: 12px/1 monospace;
   color: #8a8a8a;
 }
+        /* Standard: kein linker Balken bei allen material-boxen */
+.material-box{
+  border-left: none;
+}
+
+/* Nur D1 bekommt den blauen Balken */
+.material-box.d1-box{
+  border-left: 5px solid #2b579a;
+}
     </style>
 </head>
 <body>
@@ -747,7 +756,7 @@
             question: "Deine Ausarbeitung zu Aufgabe 1:",
             hasExternalLink: false,
             htmlContent: `
-               <div class="material-box">
+               <div class="material-box d1-box">
   <h3><b>D1 - Die Gründung Roms: Was die Geschichtswissenschaft berichtet</b></h3>
 
  <div class="text-with-lines auto-lines" data-step="5">
@@ -927,7 +936,7 @@
         localStorage.setItem('answer_' + currentModuleId, answerText);
         alert("Deine Antwort wurde erfolgreich gespeichert!");
     }
-    function renderAutoLineNumbers() {
+   function renderAutoLineNumbers() {
   document.querySelectorAll('.auto-lines').forEach(box => {
     box.querySelectorAll('.line-marker').forEach(n => n.remove());
 
@@ -936,18 +945,34 @@
 
     const step = parseInt(box.dataset.step || '5', 10);
     const cs = getComputedStyle(textEl);
-    const lh = parseFloat(cs.lineHeight);
-    if (!lh || Number.isNaN(lh)) return;
 
-    const totalLines = Math.round(textEl.getBoundingClientRect().height / lh);
+    let lh = parseFloat(cs.lineHeight);
+    if (!lh || Number.isNaN(lh)) {
+      const fs = parseFloat(cs.fontSize) || 16;
+      lh = fs * 1.35; // Fallback
+    }
+
+    const totalLines = Math.round(textEl.scrollHeight / lh);
 
     for (let i = step; i <= totalLines; i += step) {
       const marker = document.createElement('div');
       marker.className = 'line-marker';
       marker.textContent = i;
-      marker.style.top = `${(i - 1) * lh}px`;
+      marker.style.top = `${(i - 0.85) * lh}px`;
       box.appendChild(marker);
     }
+  });
+}
+
+// nach openModule erneut rendern
+const _oldOpenModule = openModule;
+openModule = function(moduleId){
+  _oldOpenModule(moduleId);
+  requestAnimationFrame(renderAutoLineNumbers);
+};
+
+window.addEventListener('load', () => requestAnimationFrame(renderAutoLineNumbers));
+window.addEventListener('resize', () => requestAnimationFrame(renderAutoLineNumbers));
   });
 }
 
