@@ -495,6 +495,25 @@
   -webkit-hyphens: auto;
   -ms-hyphens: auto;
 }
+        .auto-lines{
+  position: relative;
+  padding-left: 34px;
+}
+.auto-lines .line-text{
+  text-align: justify;
+  text-align-last: left;
+  line-height: 1.35;
+  hyphens: auto;
+}
+.auto-lines .line-marker{
+  position: absolute;
+  left: 0;
+  transform: translateY(-0.1em);
+  width: 24px;
+  text-align: right;
+  font: 12px/1 monospace;
+  color: #8a8a8a;
+}
     </style>
 </head>
 <body>
@@ -731,15 +750,16 @@
                <div class="material-box">
   <h3><b>D1 - Die Gründung Roms: Was die Geschichtswissenschaft berichtet</b></h3>
 
-  <div class="text-with-lines">
-    <div class="line-p"><div class="line-number"></div><div class="line-text"><b>Die ersten Siedlungen</b></div></div>
-    <div class="line-p"><div class="line-number"></div><div class="line-text">Etwa um 1000 v. Chr. ließ sich das Volk der Latiner am Fluss Tiber in Mittelitalien nieder. Sie lebten als Ackerbauern und Hirten. Auf den Hügeln Palatin und Quirinal entstanden zu dieser Zeit kleine Dörfer aus einfachen Hütten. Um et wa 700 v. Chr. existierten schon größere Dörfer auf allen sieben Hügeln.</div></div>
+ <div class="text-with-lines auto-lines" data-step="5">
+  <div class="line-text">
+    <b>Die ersten Siedlungen</b><br>
+    Etwa um 1000 v. Chr. ließ sich das Volk der Latiner am Fluss Tiber in Mittelitalien nieder. Sie lebten als Ackerbauern und Hirten. Auf den Hügeln Palatin und Quirinal entstanden zu dieser Zeit kleine Dörfer aus einfachen Hütten. Um etwa 700 v. Chr. existierten schon größere Dörfer auf allen sieben Hügeln.<br><br>
 
-    <div class="line-p"><div class="line-number"></div><div class="line-text"><b>Latiner und Etrusker</b></div></div>
-    <div class="line-p"><div class="line-number"></div><div class="line-text">Um etwa 800 v. Chr. wanderten Etrusker von Norden her in die Gegend ein. Die Herkunft dieses Volkes ist unbekannt. Sicher ist aber, dass die Etrusker Kontakt zur griechischen Hochkultur gehabt hatten. Vielleicht stammten sie ursprünglich sogar aus Griechenland. Archäologische Fundstücke von soliden Steinhäusern, Schmuckstücken und Waffen beweisen, dass es sich um ein kulturell hoch entwickeltes Volk handelte. Die Etrusker siedelten zunächst auf der anderen Seite des Flusses Tiber. Mit der Zeit aber gewannen sie die Oberhand über das Volk der Latiner, deren Hütten auf der gegenüberliegenden Flussseite auf den sieben Hügeln standen.</div></div>
+    <b>Latiner und Etrusker</b><br>
+    Um etwa 800 v. Chr. wanderten Etrusker von Norden her in die Gegend ein. Die Herkunft dieses Volkes ist unbekannt. Sicher ist aber, dass die Etrusker Kontakt zur griechischen Hochkultur gehabt hatten. Vielleicht stammten sie ursprünglich sogar aus Griechenland. Archäologische Fundstücke von soliden Steinhäusern, Schmuckstücken und Waffen beweisen, dass es sich um ein kulturell hoch entwickeltes Volk handelte. Die Etrusker siedelten zunächst auf der anderen Seite des Flusses Tiber. Mit der Zeit aber gewannen sie die Oberhand über das Volk der Latiner, deren Hütten auf der gegenüberliegenden Flussseite auf den sieben Hügeln standen.<br><br>
 
-    <div class="line-p"><div class="line-number"></div><div class="line-text"><b>Die Gründung der Stadt Rom</b></div></div>
-    <div class="line-p"><div class="line-number"></div><div class="line-text">Wahrscheinlich waren es die Etrusker, die die Dörfer der Latiner zu einer echten Stadt verschmolzen und Rom gründeten. Der Name „Rom" leitet sich vermutlich von dem etruskischen Königsgeschlecht der Ruma ab. Wann die Stadt Rom genau gegründet wurde, können die Wissenschaftler/innen nicht sagen.</div></div>
+    <b>Die Gründung der Stadt Rom</b><br>
+    Wahrscheinlich waren es die Etrusker, die die Dörfer der Latiner zu einer echten Stadt verschmolzen und Rom gründeten. Der Name „Rom“ leitet sich vermutlich von dem etruskischen Königsgeschlecht der Ruma ab. Wann die Stadt Rom genau gegründet wurde, können die Wissenschaftler/innen nicht sagen.
   </div>
 </div>
 
@@ -907,6 +927,32 @@
         localStorage.setItem('answer_' + currentModuleId, answerText);
         alert("Deine Antwort wurde erfolgreich gespeichert!");
     }
+    function renderAutoLineNumbers() {
+  document.querySelectorAll('.auto-lines').forEach(box => {
+    box.querySelectorAll('.line-marker').forEach(n => n.remove());
+
+    const textEl = box.querySelector('.line-text');
+    if (!textEl) return;
+
+    const step = parseInt(box.dataset.step || '5', 10);
+    const cs = getComputedStyle(textEl);
+    const lh = parseFloat(cs.lineHeight);
+    if (!lh || Number.isNaN(lh)) return;
+
+    const totalLines = Math.round(textEl.getBoundingClientRect().height / lh);
+
+    for (let i = step; i <= totalLines; i += step) {
+      const marker = document.createElement('div');
+      marker.className = 'line-marker';
+      marker.textContent = i;
+      marker.style.top = `${(i - 1) * lh}px`;
+      box.appendChild(marker);
+    }
+  });
+}
+
+window.addEventListener('load', renderAutoLineNumbers);
+window.addEventListener('resize', renderAutoLineNumbers);
 </script>
 
 </body>
