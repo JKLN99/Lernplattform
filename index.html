@@ -348,39 +348,39 @@
             background: #1e3f70;
         }
 
-       /* --- TEXT MIT ZEILENANGABEN (BLOCKSATZ) --- */
-.text-with-lines{
-    max-width: 760px;
-    margin: 0 auto;
-}
+        /* --- TEXT MIT ZEILENANGABEN (BLOCKSATZ) --- */
+        .text-with-lines{
+            max-width: 760px;
+            margin: 0 auto;
+        }
 
-.line-p{
-    position: relative;
-    margin: 0 0 8px 0;
-    padding-left: 0;
-}
+        .line-p{
+            position: relative;
+            margin: 0 0 8px 0;
+            padding-left: 0;
+        }
 
-.line-number{
-    position: absolute;
-    left: -28px;          /* Zahl links außerhalb des Textblocks */
-    top: 0.1em;
-    width: 24px;
-    text-align: right;
-    font: 12px/1 monospace;
-    color: #8a8a8a;
-    user-select: none;
-}
+        .line-number{
+            position: absolute;
+            left: -28px;
+            top: 0.1em;
+            width: 24px;
+            text-align: right;
+            font: 12px/1 monospace;
+            color: #8a8a8a;
+            user-select: none;
+        }
 
-.line-text{
-    display: block;
-    text-align: justify;          /* Blocksatz */
-    text-justify: inter-word;
-    text-align-last: left;        /* letzte Zeile nicht auseinandergezogen */
-    line-height: 1.5;            /* enger Zeilenabstand */
-    hyphens: auto;
-    -webkit-hyphens: auto;
-    -ms-hyphens: auto;
-}
+        .line-text{
+            display: block;
+            text-align: justify;
+            text-justify: inter-word;
+            text-align-last: left;
+            line-height: 1.5;
+            hyphens: auto;
+            -webkit-hyphens: auto;
+            -ms-hyphens: auto;
+        }
 
         /* --- NOTIZBUCH --- */
         .notebook-toggle {
@@ -424,105 +424,154 @@
             border-radius: 5px;
             cursor: pointer;
         }
+
         /* D1/Q1: sicherer Blocksatz */
-.material-box .text-with-lines .line-text,
-.source-box .text-with-lines .line-text {
-  display: block !important;
-  width: 100% !important;
-  text-align: justify !important;
-  text-justify: inter-word !important;
-  text-align-last: left !important;
-  line-height: 1.5 !important;
-  hyphens: auto !important;
-  -webkit-hyphens: auto !important;
-  -ms-hyphens: auto !important;
-}
+        .material-box .text-with-lines .line-text,
+        .source-box .text-with-lines .line-text {
+          display: block !important;
+          width: 100% !important;
+          text-align: justify !important;
+          text-justify: inter-word !important;
+          text-align-last: left !important;
+          line-height: 1.5 !important;
+          hyphens: auto !important;
+          -webkit-hyphens: auto !important;
+          -ms-hyphens: auto !important;
+        }
 
-/* Layout der Zeilen + Nummer links */
-.material-box .text-with-lines .line-p,
-.source-box .text-with-lines .line-p {
-  position: relative !important;
-  margin: 0 0 6px 0 !important;
-  padding-left: 0 !important;
-}
+        .material-box .text-with-lines .line-p,
+        .source-box .text-with-lines .line-p {
+          position: relative !important;
+          margin: 0 0 6px 0 !important;
+          padding-left: 0 !important;
+        }
 
-.material-box .text-with-lines .line-number,
-.source-box .text-with-lines .line-number {
-  position: absolute !important;
-  left: -28px !important;
-  top: 0.1em !important;
-  width: 24px !important;
-  text-align: right !important;
-  font: 12px/1 monospace !important;
-  color: #8a8a8a !important;
-}
+        .material-box .text-with-lines .line-number,
+        .source-box .text-with-lines .line-number {
+          position: absolute !important;
+          left: -28px !important;
+          top: 0.1em !important;
+          width: 24px !important;
+          text-align: right !important;
+          font: 12px/1 monospace !important;
+          color: #8a8a8a !important;
+        }
 
-/* --- NUR M1: sauberer Blocksatz + korrekte Zeilenzahlen --- */
-#materials-container .material-box .text-with-lines,
-#materials-container .source-box .text-with-lines{
-  max-width: 760px;
-  margin: 0 auto;
-}
+        /* --- NUR M1: sauberer Blocksatz + korrekte Zeilenzahlen --- */
+        #materials-container .material-box .text-with-lines,
+        #materials-container .source-box .text-with-lines{
+          max-width: 760px;
+          margin: 0 auto;
+        }
 
-#materials-container .material-box .text-with-lines .line-p,
-#materials-container .source-box .text-with-lines .line-p{
-  position: relative;
-  margin: 0 0 4px 0 !important;
-  padding: 0 0 0 34px !important;
-}
+        #materials-container .material-box .text-with-lines .line-p,
+        #materials-container .source-box .text-with-lines .line-p{
+          position: relative;
+          margin: 0 0 4px 0 !important;
+          padding: 0 0 0 34px !important;
+        }
 
-#materials-container .material-box .text-with-lines .line-number,
-#materials-container .source-box .text-with-lines .line-number{
-  position: absolute;
-  left: 0;
-  top: 0.15em;
-  width: 24px;
-  text-align: right;
-  font: 12px/1 monospace;
-  color: #8a8a8a;
-  user-select: none;
-}
+        #materials-container .material-box .text-with-lines .line-number,
+        #materials-container .source-box .text-with-lines .line-number{
+          position: absolute;
+          left: 0;
+          top: 0.15em;
+          width: 24px;
+          text-align: right;
+          font: 12px/1 monospace;
+          color: #8a8a8a;
+          user-select: none;
+        }
 
-#materials-container .material-box .text-with-lines .line-text,
-#materials-container .source-box .text-with-lines .line-text{
-  display: block !important;
-  width: 100%;
-  text-align: justify !important;
-  text-justify: inter-word;
-  text-align-last: left;
-  line-height: 1.32 !important;
-  hyphens: auto;
-  -webkit-hyphens: auto;
-  -ms-hyphens: auto;
-}
+        #materials-container .material-box .text-with-lines .line-text,
+        #materials-container .source-box .text-with-lines .line-text{
+          display: block !important;
+          width: 100%;
+          text-align: justify !important;
+          text-justify: inter-word;
+          text-align-last: left;
+          line-height: 1.32 !important;
+          hyphens: auto;
+          -webkit-hyphens: auto;
+          -ms-hyphens: auto;
+        }
+
         .auto-lines{
-  position: relative;
-  padding-left: 34px;
-}
-.auto-lines .line-text{
-  text-align: justify;
-  text-align-last: left;
-  line-height: 1.35;
-  hyphens: auto;
-}
-.auto-lines .line-marker{
-  position: absolute;
-  left: 0;
-  transform: translateY(-0.1em);
-  width: 24px;
-  text-align: right;
-  font: 12px/1 monospace;
-  color: #8a8a8a;
-}
-        /* Standard: kein linker Balken bei allen material-boxen */
-.material-box{
-  border-left: none;
-}
+          position: relative;
+          padding-left: 34px;
+        }
 
-/* Nur D1 bekommt den blauen Balken */
-.material-box.d1-box{
-  border-left: 5px solid #2b579a;
-}
+        .auto-lines .line-text{
+          text-align: justify;
+          text-align-last: left;
+          line-height: 1.35;
+          hyphens: auto;
+        }
+
+        .auto-lines .line-marker{
+          position: absolute;
+          left: 0;
+          transform: translateY(-0.1em);
+          width: 24px;
+          text-align: right;
+          font: 12px/1 monospace;
+          color: #8a8a8a;
+        }
+
+        .material-box{
+          border-left: none;
+        }
+
+        .material-box.d1-box{
+          border-left: 5px solid #2b579a;
+        }
+
+        /* --- M4 SCHAUBILD --- */
+        .board-grid{
+          display:grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 20px;
+          margin-top: 20px;
+        }
+
+        .board-title{
+          text-align:left;
+          color:#111;
+          border:4px solid #000;
+          background:#fff;
+          padding:10px 12px;
+          margin:0 0 10px 0;
+        }
+
+        .board-text{
+          width:100%;
+          min-height:220px;
+          border:6px solid #000;
+          border-radius:20px;
+          padding:12px;
+          box-sizing:border-box;
+          font-size:16px;
+          font-family:inherit;
+          resize:vertical;
+        }
+
+        .board-fazit-wrap{ margin-top:20px; }
+
+        .board-fazit{
+          width:100%;
+          min-height:120px;
+          border:6px solid #000;
+          border-radius:20px;
+          padding:12px;
+          box-sizing:border-box;
+          font-size:16px;
+          font-family:inherit;
+          resize:vertical;
+        }
+
+        @media (max-width:800px){
+          .board-grid{ grid-template-columns:1fr; }
+        }
     </style>
 </head>
 <body>
@@ -611,6 +660,35 @@
                     <p>Wirtschaft, Krisen & Machtkämpfe</p>
                 </div>
             </div>
+
+            <div style="text-align:center; margin-top: 10px;">
+                <button class="notebook-toggle" onclick="openM4Board()">🧩 Zum Schaubild</button>
+            </div>
+        </div>
+        
+        <div id="m4-board-page" class="hidden">
+            <button class="btn-back" onclick="showM4Overview()">← Zurück zu M4</button>
+            <h2>M4: Ursachen des Untergangs – Schaubild</h2>
+            <p style="text-align:center;">Jede Gruppe füllt zuerst nur ihren Bereich aus. Danach formuliert ihr ein gemeinsames Werturteil.</p>
+
+            <div class="board-grid">
+                <div class="board-col">
+                    <h3 class="board-title">Äußere Ursachen</h3>
+                    <textarea id="board-outer" class="board-text" placeholder="z. B. Völkerwanderung, Angriffe auf Grenzen, Druck auf das Reich ..."></textarea>
+                </div>
+
+                <div class="board-col">
+                    <h3 class="board-title">Innere Ursachen</h3>
+                    <textarea id="board-inner" class="board-text" placeholder="z. B. Machtkämpfe, Wirtschaftskrise, schwache Kaiser ..."></textarea>
+                </div>
+            </div>
+
+            <div class="board-fazit-wrap">
+                <h3 class="board-title">Fazit</h3>
+                <textarea id="board-fazit" class="board-fazit" placeholder="Gemeinsames Urteil: Welche Ursachen wogen am stärksten?"></textarea>
+            </div>
+
+            <button class="btn-save" onclick="saveBoard()">💾 Schaubild speichern</button>
         </div>
 
         <div id="module-page" class="hidden">
@@ -680,108 +758,106 @@ function checkPassword() {
 function handlePasswordKeypress(event) {
     if (event.key === 'Enter') checkPassword();
 }
-    // --- LOGIN-STATUS SPEICHERN UND PRÜFEN ---
-    function saveLoginStatus() {
-        localStorage.setItem('lernplattform_logged_in', 'true');
+
+// --- LOGIN-STATUS SPEICHERN UND PRÜFEN ---
+function saveLoginStatus() {
+    localStorage.setItem('lernplattform_logged_in', 'true');
+}
+
+function logout() {
+    localStorage.removeItem('lernplattform_logged_in');
+    document.getElementById('login-page').classList.remove('hidden');
+    document.getElementById('main-page').classList.add('hidden');
+    document.getElementById('password-input').value = '';
+    document.getElementById('password-input').focus();
+}
+
+function checkLoginStatus() {
+    const isLoggedIn = localStorage.getItem('lernplattform_logged_in');
+    if (isLoggedIn === 'true') {
+        document.getElementById('login-page').classList.add('hidden');
+        document.getElementById('main-page').classList.remove('hidden');
     }
+}
 
-    function logout() {
-        localStorage.removeItem('lernplattform_logged_in');
-        document.getElementById('login-page').classList.remove('hidden');
-        document.getElementById('main-page').classList.add('hidden');
-        document.getElementById('password-input').value = '';
-        document.getElementById('password-input').focus();
-    }
+window.addEventListener('load', function() {
+    checkLoginStatus();
+});
 
-    function checkLoginStatus() {
-        const isLoggedIn = localStorage.getItem('lernplattform_logged_in');
-        if (isLoggedIn === 'true') {
-            document.getElementById('login-page').classList.add('hidden');
-            document.getElementById('main-page').classList.remove('hidden');
-        }
-    }
+// --- HINTERGRUND-SOUND ---
+let bgSound = null;
+let isMusicPlaying = false;
 
-    // Beim Laden der Seite prüfen
-    window.addEventListener('load', function() {
-        checkLoginStatus();
-    });
+try {
+    bgSound = new Audio('hintergrund.mp3');
+    bgSound.loop = true;
+    bgSound.volume = 0.2; 
+} catch (e) {
+    console.log("Audio konnte nicht geladen werden.");
+}
 
-    // --- HINTERGRUND-SOUND ---
-    let bgSound = null;
-    let isMusicPlaying = false;
-
-    try {
-        bgSound = new Audio('hintergrund.mp3');
-        bgSound.loop = true;
-        bgSound.volume = 0.2; 
-    } catch (e) {
-        console.log("Audio konnte nicht geladen werden.");
-    }
-
-    function toggleMusic() {
-        if (!bgSound) return;
-        const btn = document.getElementById('music-btn');
-        if (isMusicPlaying) {
-            bgSound.pause();
-            btn.innerHTML = "🎵 Musik an";
-            isMusicPlaying = false;
-        } else {
-            bgSound.play().then(() => {
-                btn.innerHTML = "⏸️ Musik aus";
-                isMusicPlaying = true;
-            }).catch(error => {
-                alert("Bitte klicke erst auf die Seite, damit der Browser den Ton erlaubt!");
-            });
-        }
-    }
-
-    // Hilfsfunktion zum Splitten von Text in Zeilen mit Zeilennummern
-    function createLinesWithNumbers(text) {
-        const lines = text.split('\n');
-        let lineCount = 0;
-        let result = '<div class="text-with-lines">';
-        
-        lines.forEach((line, index) => {
-            if (line.trim()) {
-                lineCount++;
-                // Zeilennummer nur alle 5 Zeilen anzeigen
-                const showNumber = (lineCount % 5 === 0) ? lineCount : '';
-                result += `<div class="line-p">`;
-                result += `<div class="line-number">${showNumber}</div>`;
-                result += `<div class="line-text">${line}</div>`;
-                result += `</div>`;
-            }
+function toggleMusic() {
+    if (!bgSound) return;
+    const btn = document.getElementById('music-btn');
+    if (isMusicPlaying) {
+        bgSound.pause();
+        btn.innerHTML = "🎵 Musik an";
+        isMusicPlaying = false;
+    } else {
+        bgSound.play().then(() => {
+            btn.innerHTML = "⏸️ Musik aus";
+            isMusicPlaying = true;
+        }).catch(error => {
+            alert("Bitte klicke erst auf die Seite, damit der Browser den Ton erlaubt!");
         });
-        
-        result += '</div>';
-        return result;
     }
+}
 
-    // --- DATEN DER MODULE ---
-    const modulesData = {
-        m1: {
-            title: "M1: Die Gründung Roms",
-            image: "woelfin.jpg",
-            imageCaption: "<b>Quelle:</b> Kapitolinische Wölfin (Lupa Capitolina): Wölfin mit Romulus und Remus, Bronze, 12. Jahrhundert n. Chr. (laut C14-Datierung; nach traditioneller Sicht etruskisch, 5. Jh. v. Chr.). Musei Capitolini, Rom.",
-            task: "<b>1)</b> <b>Erläutere</b> zunächst die Position der Geschichtswissenschaft zur Gründung Roms. Fülle dafür das Notizbuch aus.<br><br><b>2)</b> Finde dich danach mit deinem Partner zusammen und <b>vergleicht</b> gemeinsam den Text der Geschichtswissenschaft zur Gründung Roms mit der Gründungssage. Haltet eure Ergebnisse im Notizbuch fest.",
-            question: "Deine Ausarbeitung zu Aufgabe 1:",
-            hasExternalLink: false,
-            htmlContent: `
-               <div class="material-box d1-box">
-  <h3><b>D1 - Die Gründung Roms: Was die Geschichtswissenschaft berichtet</b></h3>
+function createLinesWithNumbers(text) {
+    const lines = text.split('\n');
+    let lineCount = 0;
+    let result = '<div class="text-with-lines">';
+    
+    lines.forEach((line) => {
+        if (line.trim()) {
+            lineCount++;
+            const showNumber = (lineCount % 5 === 0) ? lineCount : '';
+            result += `<div class="line-p">`;
+            result += `<div class="line-number">${showNumber}</div>`;
+            result += `<div class="line-text">${line}</div>`;
+            result += `</div>`;
+        }
+    });
+    
+    result += '</div>';
+    return result;
+}
 
- <div class="text-with-lines auto-lines" data-step="5">
-  <div class="line-text">
-    <b>Die ersten Siedlungen</b><br>
-    Etwa um 1000 v. Chr. ließ sich das Volk der Latiner am Fluss Tiber in Mittelitalien nieder. Sie lebten als Ackerbauern und Hirten. Auf den Hügeln Palatin und Quirinal entstanden zu dieser Zeit kleine Dörfer aus einfachen Hütten. Um etwa 700 v. Chr. existierten schon größere Dörfer auf allen sieben Hügeln.<br><br>
+// --- DATEN DER MODULE ---
+const modulesData = {
+    m1: {
+        title: "M1: Die Gründung Roms",
+        image: "woelfin.jpg",
+        imageCaption: "<b>Quelle:</b> Kapitolinische Wölfin (Lupa Capitolina): Wölfin mit Romulus und Remus, Bronze, 12. Jahrhundert n. Chr. (laut C14-Datierung; nach traditioneller Sicht etruskisch, 5. Jh. v. Chr.). Musei Capitolini, Rom.",
+        task: "<b>1)</b> <b>Erläutere</b> zunächst die Position der Geschichtswissenschaft zur Gründung Roms. Fülle dafür das Notizbuch aus.<br><br><b>2)</b> Finde dich danach mit deinem Partner zusammen und <b>vergleicht</b> gemeinsam den Text der Geschichtswissenschaft zur Gründung Roms mit der Gründungssage. Haltet eure Ergebnisse im Notizbuch fest.",
+        question: "Deine Ausarbeitung zu Aufgabe 1:",
+        hasExternalLink: false,
+        htmlContent: `
+            <div class="material-box d1-box">
+                <h3><b>D1 - Die Gründung Roms: Was die Geschichtswissenschaft berichtet</b></h3>
 
-    <b>Latiner und Etrusker</b><br>
-    Um etwa 800 v. Chr. wanderten Etrusker von Norden her in die Gegend ein. Die Herkunft dieses Volkes ist unbekannt. Sicher ist aber, dass die Etrusker Kontakt zur griechischen Hochkultur gehabt hatten. Vielleicht stammten sie ursprünglich sogar aus Griechenland. Archäologische Fundstücke von soliden Steinhäusern, Schmuckstücken und Waffen beweisen, dass es sich um ein kulturell hoch entwickeltes Volk handelte. Die Etrusker siedelten zunächst auf der anderen Seite des Flusses Tiber. Mit der Zeit aber gewannen sie die Oberhand über das Volk der Latiner, deren Hütten auf der gegenüberliegenden Flussseite auf den sieben Hügeln standen.<br><br>
+                <div class="text-with-lines auto-lines" data-step="5">
+                    <div class="line-text">
+                        <b>Die ersten Siedlungen</b><br>
+                        Etwa um 1000 v. Chr. ließ sich das Volk der Latiner am Fluss Tiber in Mittelitalien nieder. Sie lebten als Ackerbauern und Hirten. Auf den Hügeln Palatin und Quirinal entstanden zu dieser Zeit kleine Dörfer aus einfachen Hütten. Um etwa 700 v. Chr. existierten schon größere Dörfer auf allen sieben Hügeln.<br><br>
 
-    <b>Die Gründung der Stadt Rom</b><br>
-    Wahrscheinlich waren es die Etrusker, die die Dörfer der Latiner zu einer echten Stadt verschmolzen und Rom gründeten. Der Name „Rom“ leitet sich vermutlich von dem etruskischen Königsgeschlecht der Ruma ab. Wann die Stadt Rom genau gegründet wurde, können die Wissenschaftlerinnen und Wissenschaftler nicht sagen.
-  </div>
-</div>
+                        <b>Latiner und Etrusker</b><br>
+                        Um etwa 800 v. Chr. wanderten Etrusker von Norden her in die Gegend ein. Die Herkunft dieses Volkes ist unbekannt. Sicher ist aber, dass die Etrusker Kontakt zur griechischen Hochkultur gehabt hatten. Vielleicht stammten sie ursprünglich sogar aus Griechenland. Archäologische Fundstücke von soliden Steinhäusern, Schmuckstücken und Waffen beweisen, dass es sich um ein kulturell hoch entwickeltes Volk handelte. Die Etrusker siedelten zunächst auf der anderen Seite des Flusses Tiber. Mit der Zeit aber gewannen sie die Oberhand über das Volk der Latiner, deren Hütten auf der gegenüberliegenden Flussseite auf den sieben Hügeln standen.<br><br>
+
+                        <b>Die Gründung der Stadt Rom</b><br>
+                        Wahrscheinlich waren es die Etrusker, die die Dörfer der Latiner zu einer echten Stadt verschmolzen und Rom gründeten. Der Name „Rom“ leitet sich vermutlich von dem etruskischen Königsgeschlecht der Ruma ab. Wann die Stadt Rom genau gegründet wurde, können die Wissenschaftlerinnen und Wissenschaftler nicht sagen.
+                    </div>
+                </div>
 
                 <div class="task-box">
                     <h3>Aufgaben zur Analyse</h3>
@@ -792,195 +868,224 @@ function handlePasswordKeypress(event) {
                     <h3>Q1 | <b>Die Sage von der Gründung Roms im Jahr 753 v. Chr.</b></h3>
                     <div class="text-with-lines">
                         <div class="line-p"><div class="line-number"></div><div class="line-text">Aeneas, der von der Göttin Aphrodite abstammte, konnte sich aus dem brennenden Troja retten. Nach zehn Jahren Irrfahrt landete er in Mittelitalien und heiratete eine dortige Königstochter. Seine Nachkommen wurden ebenfalls Könige. Einer davon war Numitor, ein gutherziger Mann. Doch kurz nach seinem Amtsantritt setzte sein machtgieriger Bruder Amulius ihn ab und ernannte sich selbst zum König. Um Konkurrenz zu verhindern, tötete Amulius Numitors Sohn und zwang Numitors Tochter, Priesterin der Göttin Vesta zu werden, denn diese Vestalinnen durften nicht heiraten und keine Kinder bekommen. So herrschte Amulius viele Jahre Eines Tages erschien Numitors Tochter am Fluss Tiber der Gott Mars. Die junge Priesterin wurde von ihm schwanger und brachte Zwillinge zur Welt. Als Amulius davon erfuhr, wollte er die Kinder töten. Doch ihre Mutter legte sie in einen Korb, den sie in den Fluss Tiber setzte. Amulius ließ die Mutter der Kinder daraufhin ins Gefängnis werfen. Durch den Schutz ihres Vaters Mars ertranken die Zwillinge nicht und wurden ans Ufer getrieben. Als sie dort vor Hunger schrien, säugte eine Wölfin sie mit ihrer Milch. Kurz darauf fand ein Hirte die Zwillinge und nahm sie mit nach Hause.</div></div>
-                       
                         <div class="line-p"><div class="line-number"></div><div class="line-text">Jahre später erfuhren die beiden - sie hießen Romulus und Remus - als junge Männer von ihrer wahren königlichen Herkunft. Sie riefen ihre Freunde zusammen, stürmten den Palast des Amulius und töteten ihn. Dann befreiten sie ihre Mutter und setzten ihren alten Großvater Numitor wieder als König ein. Sie selbst wollten eine neue Stadt gründen, und zwar dort, wo die Wölfin sie gesäugt hatte. Durch einen Götterentscheid sollte Romulus der Gründer werden. Als er die Stadtgrenze mit einem Pflug kennzeichnete, hüpfte Remus voller Spott über die Furche hinweg.</div></div>
-                      
                         <div class="line-p"><div class="line-number"></div><div class="line-text">Wutentbrannt rief Romulus: „So soll es jedem gehen, der meine Stadt angreift!" Und er brachte Remus um. Die neue Stadt nannte Romulus nach ihm selbst: Rom.</div></div>
                     </div>
                 </div>
-            `
-        },
-        m2: {
-            title: "M2: Die Expansion des Reiches",
-            image: null,
-            task: "<b>1)</b> <b>Untersuche</b> die Geschichtskarte des Römischen Reiches im bereitgestellten Material.<br><br><b>2)</b> <b>Analysiere</b> den Erfolg der römischen Armee.",
-            question: "Welche Faktoren machten die römische Armee erfolgreich?",
-            hasExternalLink: false,
-            htmlContent: `<div class="material-box"><h3>D1 | Geschichtskarte</h3><p>Hier kommt dein Material hin.</p></div>`
-        },
-        m3: {
-            title: "M3: Herrschaft im Römischen Reich",
-            image: null,
-            task: "Aufgabenstellung für Modul M3",
-            question: "Deine Ausarbeitung zu Modul M3:",
-            hasExternalLink: false,
-            text: "Hier kannst du die Materialien zur römischen Herrschaft einfügen."
-        },
-        m4_aussere: {
-            title: "M4: Äußere Ursachen des Untergangs",
-            image: null,
-            task: "<b>Arbeite heraus</b>, welche Rolle die Angriffe von außen beim Zerfall spielten.",
-            question: "Welche äußeren Faktoren führten zum Untergang?",
-            hasExternalLink: false,
-            text: "Äußere Ursachen für den Untergang des Römischen Reiches."
-        },
-        m4_innere: {
-            title: "M4: Innere Ursachen des Untergangs",
-            image: null,
-            task: "<b>1) Erläutere</b> die inneren Ursachen, die zum Untergang des Römischen Reiches führten. Konzentriere die dabei auf <b>maximal 3 Ursachen!</b>.<br><br><b>2)</b> Tausche deine Ergebnisse mit deinem Partner aus und ergänzt eure Antworten im Notizbuch.",
-            question: "Welche inneren Krisen schadeten dem Reich?",
-            hasExternalLink: false,
-            htmlContent: `
-                <div class="material-box">
-                    <h3><b>D1 - Innere Ursachen für den Untergang des Römischen Reiches</b></h3>
-                    <div class="text-with-lines">
-                        <div class="line-p"><div class="line-number"></div><div class="line-text">Im 3. Jahrhundert n. Chr. war das Weltreich zwar riesengroß geworden, aber die Schlagkraft der römischen Armee hatte deutlich nachgelassen. Immer weniger Römer waren bereit, ins Heer einzutreten. So war es nötig, Söldner aus den Provinzen oder sogar von außerhalb des Reiches anzuwerben.</div></div>
-
-                        <div class="line-p"><div class="line-number"></div><div class="line-text"><b>Schlechte Führung</b></div></div>
-                        <div class="line-p"><div class="line-number"></div><div class="line-text">Nicht alle Kaiser führten das Reich gut: Manche waren machtgierig, ungerecht und grausam. Einige von ihnen wurden von politischen Gegnern ermordet. Viele Senatoren und politische Führer waren bestechlich. Die Bürger verloren nach und nach das Vertrauen in ihre Regierung. Auch, dass an der Spitze des Reiches Unordnung herrschte, hatte negative Folgen. Immer wieder stritten sich rivalisierende Feldherren um den Kaiserthron. Aus diesem Grund teilte Kaiser Diokletian 284 n. Chr. das Reich in einen westlichen und einen östlichen Verwaltungsbezirk, um es besser regieren zu können. Diokletian zog die Inhaber politischer Ämter stärker als zuvor für Pannen bei der Steuereintreibung zur Verantwortung. Deshalb wollte kaum noch jemand politische Verantwortung übernehmen. Ebenso forderte er von den wohlhabenden Bürgern höhere Abgaben, wodurch Handwerk und Handel immer mehr erlahmten.</div></div>
-
-                        <div class="line-p"><div class="line-number"></div><div class="line-text"><b>Finanznot</b></div></div>
-                        <div class="line-p"><div class="line-number"></div><div class="line-text">Ständige Feldzüge und hohe Ausgaben für Straßen, Aquädukte und andere Bauwerke kosteten sehr viel Geld. In der Not erhöhte Rom die Steuern für die Bürger. Als Folge verließen viele reiche Römer die Stadt und zogen in die Provinzen, wo sie weniger Steuern bezahlen mussten. Überall im Reich arbeiteten Sklaven. Als die Römer allerdings nicht weiter expandierten und weitere Völker unterwarfen, fehlten Sklaven als Arbeitskräfte.</div></div>
-                        <div class="line-p"><div class="line-number"></div><div class="line-text"></div></div>
-                    </div>
-                    <p style="text-align: right;"><b>Entnommen aus: Zeiten und Menschen 1, 2021, S. 184</b></p>
+            </div>
+        `
+    },
+    m2: {
+        title: "M2: Die Expansion des Reiches",
+        image: null,
+        task: "<b>1)</b> <b>Untersuche</b> die Geschichtskarte des Römischen Reiches im bereitgestellten Material.<br><br><b>2)</b> <b>Analysiere</b> den Erfolg der römischen Armee.",
+        question: "Welche Faktoren machten die römische Armee erfolgreich?",
+        hasExternalLink: false,
+        htmlContent: `<div class="material-box"><h3>D1 | Geschichtskarte</h3><p>Hier kommt dein Material hin.</p></div>`
+    },
+    m3: {
+        title: "M3: Herrschaft im Römischen Reich",
+        image: null,
+        task: "Aufgabenstellung für Modul M3",
+        question: "Deine Ausarbeitung zu Modul M3:",
+        hasExternalLink: false,
+        text: "Hier kannst du die Materialien zur römischen Herrschaft einfügen."
+    },
+    m4_aussere: {
+        title: "M4: Äußere Ursachen des Untergangs",
+        image: null,
+        task: "<b>Arbeite heraus</b>, welche Rolle die Angriffe von außen beim Zerfall spielten.",
+        question: "Welche äußeren Faktoren führten zum Untergang?",
+        hasExternalLink: false,
+        text: "Äußere Ursachen für den Untergang des Römischen Reiches."
+    },
+    m4_innere: {
+        title: "M4: Innere Ursachen des Untergangs",
+        image: null,
+        task: "<b>1) Erläutere</b> die inneren Ursachen, die zum Untergang des Römischen Reiches führten. Konzentriere die dabei auf <b>maximal 3 Ursachen!</b>.<br><br><b>2)</b> Tausche deine Ergebnisse mit deinem Partner aus und ergänzt eure Antworten im Notizbuch.",
+        question: "Welche inneren Krisen schadeten dem Reich?",
+        hasExternalLink: false,
+        htmlContent: `
+            <div class="material-box">
+                <h3><b>D1 - Innere Ursachen für den Untergang des Römischen Reiches</b></h3>
+                <div class="text-with-lines">
+                    <div class="line-p"><div class="line-number"></div><div class="line-text">Im 3. Jahrhundert n. Chr. war das Weltreich zwar riesengroß geworden, aber die Schlagkraft der römischen Armee hatte deutlich nachgelassen. Immer weniger Römer waren bereit, ins Heer einzutreten. So war es nötig, Söldner aus den Provinzen oder sogar von außerhalb des Reiches anzuwerben.</div></div>
+                    <div class="line-p"><div class="line-number"></div><div class="line-text"><b>Schlechte Führung</b></div></div>
+                    <div class="line-p"><div class="line-number"></div><div class="line-text">Nicht alle Kaiser führten das Reich gut: Manche waren machtgierig, ungerecht und grausam. Einige von ihnen wurden von politischen Gegnern ermordet. Viele Senatoren und politische Führer waren bestechlich. Die Bürger verloren nach und nach das Vertrauen in ihre Regierung. Auch, dass an der Spitze des Reiches Unordnung herrschte, hatte negative Folgen. Immer wieder stritten sich rivalisierende Feldherren um den Kaiserthron. Aus diesem Grund teilte Kaiser Diokletian 284 n. Chr. das Reich in einen westlichen und einen östlichen Verwaltungsbezirk, um es besser regieren zu können. Diokletian zog die Inhaber politischer Ämter stärker als zuvor für Pannen bei der Steuereintreibung zur Verantwortung. Deshalb wollte kaum noch jemand politische Verantwortung übernehmen. Ebenso forderte er von den wohlhabenden Bürgern höhere Abgaben, wodurch Handwerk und Handel immer mehr erlahmten.</div></div>
+                    <div class="line-p"><div class="line-number"></div><div class="line-text"><b>Finanznot</b></div></div>
+                    <div class="line-p"><div class="line-number"></div><div class="line-text">Ständige Feldzüge und hohe Ausgaben für Straßen, Aquädukte und andere Bauwerke kosteten sehr viel Geld. In der Not erhöhte Rom die Steuern für die Bürger. Als Folge verließen viele reiche Römer die Stadt und zogen in die Provinzen, wo sie weniger Steuern bezahlen mussten. Überall im Reich arbeiteten Sklaven. Als die Römer allerdings nicht weiter expandierten und weitere Völker unterwarfen, fehlten Sklaven als Arbeitskräfte.</div></div>
+                    <div class="line-p"><div class="line-number"></div><div class="line-text"></div></div>
                 </div>
-            `
-        },
-        m5: {
-            title: "M5: Gesellschaft im Römischen Reich",
-            image: null,
-            task: "Aufgabenstellung für Modul M5",
-            question: "Deine Ausarbeitung zu Modul M5:",
-            hasExternalLink: false,
-            text: "Hier kannst du Texte zur römischen Familie platzieren."
-        }
-    };
+                <p style="text-align: right;"><b>Entnommen aus: Zeiten und Menschen 1, 2021, S. 184</b></p>
+            </div>
+        `
+    },
+    m5: {
+        title: "M5: Gesellschaft im Römischen Reich",
+        image: null,
+        task: "Aufgabenstellung für Modul M5",
+        question: "Deine Ausarbeitung zu Modul M5:",
+        hasExternalLink: false,
+        text: "Hier kannst du Texte zur römischen Familie platzieren."
+    }
+};
 
-    let currentModuleId = "";
+let currentModuleId = "";
 
-    // --- NAVIGATION ---
-    function openModule(moduleId) {
-        if (bgSound && !isMusicPlaying) {
-            bgSound.play().catch(e => console.log("Audio blockiert"));
-        }
+// --- NAVIGATION ---
+function openModule(moduleId) {
+    if (bgSound && !isMusicPlaying) {
+        bgSound.play().catch(e => console.log("Audio blockiert"));
+    }
 
-        if (moduleId === 'm4') {
-            localStorage.setItem('lastModule', moduleId);
-            document.getElementById('start-page').classList.add('hidden');
-            document.getElementById('module-page').classList.add('hidden');
-            document.getElementById('m4-overview-page').classList.remove('hidden');
-            return;
-        }
-
+    if (moduleId === 'm4') {
         localStorage.setItem('lastModule', moduleId);
-        currentModuleId = moduleId;
-        const data = modulesData[moduleId];
-
-        if (!data) return;
-
-        document.getElementById('module-title').innerText = data.title;
-        
-        // Bild einfügen falls vorhanden
-        const imageContainer = document.getElementById('module-image-container');
-        if (data.image) {
-            imageContainer.innerHTML = `
-                <div class="image-container">
-                    <img src="${data.image}" alt="Modul-Bild" class="material-img">
-                    <div class="image-caption">${data.imageCaption}</div>
-                </div>
-            `;
-        } else {
-            imageContainer.innerHTML = '';
-        }
-
-        document.getElementById('module-task').innerHTML = data.task;
-        document.getElementById('notebook-question').innerText = data.question;
-
-        const container = document.getElementById('materials-container');
-        if (data.htmlContent) {
-            container.innerHTML = data.htmlContent;
-        } else {
-            container.innerHTML = `<div class="material-box"><h3>📜 Material & Quellen</h3><p>${data.text}</p></div>`;
-        }
-requestAnimationFrame(renderAutoLineNumbers);
-
-        const extBtn = document.getElementById('external-link-btn');
-        if (data.hasExternalLink) {
-            extBtn.href = data.externalLinkTarget;
-            extBtn.innerText = data.externalLinkText;
-            extBtn.classList.remove('hidden');
-        } else {
-            extBtn.classList.add('hidden');
-        }
-
-        const savedAnswer = localStorage.getItem('answer_' + moduleId);
-        document.getElementById('notebook-answer').value = savedAnswer || "";
-
         document.getElementById('start-page').classList.add('hidden');
-        document.getElementById('m4-overview-page').classList.add('hidden');
-        document.getElementById('module-page').classList.remove('hidden');
-        document.getElementById('notebook-container').classList.add('hidden');
-    }
-
-    function handleBackAction() {
-        if (currentModuleId === 'm4_aussere' || currentModuleId === 'm4_innere') {
-            document.getElementById('module-page').classList.add('hidden');
-            document.getElementById('m4-overview-page').classList.remove('hidden');
-        } else {
-            showStartPage();
-        }
-    }
-
-    function showStartPage() {
-        document.getElementById('start-page').classList.remove('hidden');
         document.getElementById('module-page').classList.add('hidden');
-        document.getElementById('m4-overview-page').classList.add('hidden');
+        document.getElementById('m4-board-page').classList.add('hidden');
+        document.getElementById('m4-overview-page').classList.remove('hidden');
+        return;
     }
 
-    function toggleNotebook() {
-        const notebook = document.getElementById('notebook-container');
-        notebook.classList.toggle('hidden');
+    localStorage.setItem('lastModule', moduleId);
+    currentModuleId = moduleId;
+    const data = modulesData[moduleId];
+
+    if (!data) return;
+
+    document.getElementById('module-title').innerText = data.title;
+    
+    const imageContainer = document.getElementById('module-image-container');
+    if (data.image) {
+        imageContainer.innerHTML = `
+            <div class="image-container">
+                <img src="${data.image}" alt="Modul-Bild" class="material-img">
+                <div class="image-caption">${data.imageCaption}</div>
+            </div>
+        `;
+    } else {
+        imageContainer.innerHTML = '';
     }
 
-    function saveAnswer() {
-        const answerText = document.getElementById('notebook-answer').value;
-        localStorage.setItem('answer_' + currentModuleId, answerText);
-        alert("Deine Antwort wurde erfolgreich gespeichert!");
-    }
-function renderAutoLineNumbers() {
-  document.querySelectorAll('.auto-lines').forEach(function (box) {
-    box.querySelectorAll('.line-marker').forEach(function (n) { n.remove(); });
+    document.getElementById('module-task').innerHTML = data.task;
+    document.getElementById('notebook-question').innerText = data.question;
 
-    var textEl = box.querySelector('.line-text');
-    if (!textEl) return;
-
-    var step = parseInt(box.dataset.step || '5', 10);
-    var cs = getComputedStyle(textEl);
-
-    var lh = parseFloat(cs.lineHeight);
-    if (!lh || Number.isNaN(lh)) {
-      var fs = parseFloat(cs.fontSize) || 16;
-      lh = fs * 1.35;
+    const container = document.getElementById('materials-container');
+    if (data.htmlContent) {
+        container.innerHTML = data.htmlContent;
+    } else {
+        container.innerHTML = `<div class="material-box"><h3>📜 Material & Quellen</h3><p>${data.text}</p></div>`;
     }
 
-    var totalLines = Math.round(textEl.scrollHeight / lh);
+    requestAnimationFrame(renderAutoLineNumbers);
 
-    for (var i = step; i <= totalLines; i += step) {
-      var marker = document.createElement('div');
-      marker.className = 'line-marker';
-      marker.textContent = i;
-      marker.style.top = ((i - 0.85) * lh) + 'px';
-      box.appendChild(marker);
+    const extBtn = document.getElementById('external-link-btn');
+    if (data.hasExternalLink) {
+        extBtn.href = data.externalLinkTarget;
+        extBtn.innerText = data.externalLinkText;
+        extBtn.classList.remove('hidden');
+    } else {
+        extBtn.classList.add('hidden');
     }
-  });
+
+    const savedAnswer = localStorage.getItem('answer_' + moduleId);
+    document.getElementById('notebook-answer').value = savedAnswer || "";
+
+    document.getElementById('start-page').classList.add('hidden');
+    document.getElementById('m4-overview-page').classList.add('hidden');
+    document.getElementById('m4-board-page').classList.add('hidden');
+    document.getElementById('module-page').classList.remove('hidden');
+    document.getElementById('notebook-container').classList.add('hidden');
 }
+
+function handleBackAction() {
+    if (currentModuleId === 'm4_aussere' || currentModuleId === 'm4_innere') {
+        document.getElementById('module-page').classList.add('hidden');
+        document.getElementById('m4-board-page').classList.add('hidden');
+        document.getElementById('m4-overview-page').classList.remove('hidden');
+    } else {
+        showStartPage();
+    }
+}
+
+function showStartPage() {
+    document.getElementById('start-page').classList.remove('hidden');
+    document.getElementById('module-page').classList.add('hidden');
+    document.getElementById('m4-overview-page').classList.add('hidden');
+    document.getElementById('m4-board-page').classList.add('hidden');
+}
+
+function toggleNotebook() {
+    const notebook = document.getElementById('notebook-container');
+    notebook.classList.toggle('hidden');
+}
+
+function saveAnswer() {
+    const answerText = document.getElementById('notebook-answer').value;
+    localStorage.setItem('answer_' + currentModuleId, answerText);
+    alert("Deine Antwort wurde erfolgreich gespeichert!");
+}
+
+// --- M4 SCHAUBILD ---
+function openM4Board() {
+    document.getElementById('start-page').classList.add('hidden');
+    document.getElementById('module-page').classList.add('hidden');
+    document.getElementById('m4-overview-page').classList.add('hidden');
+    document.getElementById('m4-board-page').classList.remove('hidden');
+
+    document.getElementById('board-outer').value = localStorage.getItem('m4_board_outer') || '';
+    document.getElementById('board-inner').value = localStorage.getItem('m4_board_inner') || '';
+    document.getElementById('board-fazit').value = localStorage.getItem('m4_board_fazit') || '';
+}
+
+function showM4Overview() {
+    document.getElementById('m4-board-page').classList.add('hidden');
+    document.getElementById('module-page').classList.add('hidden');
+    document.getElementById('start-page').classList.add('hidden');
+    document.getElementById('m4-overview-page').classList.remove('hidden');
+}
+
+function saveBoard() {
+    localStorage.setItem('m4_board_outer', document.getElementById('board-outer').value);
+    localStorage.setItem('m4_board_inner', document.getElementById('board-inner').value);
+    localStorage.setItem('m4_board_fazit', document.getElementById('board-fazit').value);
+    alert('Schaubild gespeichert!');
+}
+
+function renderAutoLineNumbers() {
+    document.querySelectorAll('.auto-lines').forEach(function (box) {
+        box.querySelectorAll('.line-marker').forEach(function (n) { n.remove(); });
+
+        var textEl = box.querySelector('.line-text');
+        if (!textEl) return;
+
+        var step = parseInt(box.dataset.step || '5', 10);
+        var cs = getComputedStyle(textEl);
+
+        var lh = parseFloat(cs.lineHeight);
+        if (!lh || Number.isNaN(lh)) {
+            var fs = parseFloat(cs.fontSize) || 16;
+            lh = fs * 1.35;
+        }
+
+        var totalLines = Math.round(textEl.scrollHeight / lh);
+
+        for (var i = step; i <= totalLines; i += step) {
+            var marker = document.createElement('div');
+            marker.className = 'line-marker';
+            marker.textContent = i;
+            marker.style.top = ((i - 0.85) * lh) + 'px';
+            box.appendChild(marker);
+        }
+    });
+}
+
 window.addEventListener('load', function () {
-  renderAutoLineNumbers();
+    renderAutoLineNumbers();
 });
 
 window.addEventListener('resize', function () {
-  renderAutoLineNumbers();
+    renderAutoLineNumbers();
 });
 </script>
     
