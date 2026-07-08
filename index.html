@@ -892,6 +892,7 @@
         } else {
             container.innerHTML = `<div class="material-box"><h3>📜 Material & Quellen</h3><p>${data.text}</p></div>`;
         }
+requestAnimationFrame(renderAutoLineNumbers);
 
         const extBtn = document.getElementById('external-link-btn');
         if (data.hasExternalLink) {
@@ -936,49 +937,41 @@
         localStorage.setItem('answer_' + currentModuleId, answerText);
         alert("Deine Antwort wurde erfolgreich gespeichert!");
     }
-   function renderAutoLineNumbers() {
-  document.querySelectorAll('.auto-lines').forEach(box => {
-    box.querySelectorAll('.line-marker').forEach(n => n.remove());
+function renderAutoLineNumbers() {
+  document.querySelectorAll('.auto-lines').forEach(function (box) {
+    box.querySelectorAll('.line-marker').forEach(function (n) { n.remove(); });
 
-    const textEl = box.querySelector('.line-text');
+    var textEl = box.querySelector('.line-text');
     if (!textEl) return;
 
-    const step = parseInt(box.dataset.step || '5', 10);
-    const cs = getComputedStyle(textEl);
+    var step = parseInt(box.dataset.step || '5', 10);
+    var cs = getComputedStyle(textEl);
 
-    let lh = parseFloat(cs.lineHeight);
+    var lh = parseFloat(cs.lineHeight);
     if (!lh || Number.isNaN(lh)) {
-      const fs = parseFloat(cs.fontSize) || 16;
-      lh = fs * 1.35; // Fallback
+      var fs = parseFloat(cs.fontSize) || 16;
+      lh = fs * 1.35;
     }
 
-    const totalLines = Math.round(textEl.scrollHeight / lh);
+    var totalLines = Math.round(textEl.scrollHeight / lh);
 
-    for (let i = step; i <= totalLines; i += step) {
-      const marker = document.createElement('div');
+    for (var i = step; i <= totalLines; i += step) {
+      var marker = document.createElement('div');
       marker.className = 'line-marker';
       marker.textContent = i;
-      marker.style.top = `${(i - 0.85) * lh}px`;
+      marker.style.top = ((i - 0.85) * lh) + 'px';
       box.appendChild(marker);
     }
   });
 }
+window.addEventListener('load', function () {
+  renderAutoLineNumbers();
+});
 
-// nach openModule erneut rendern
-const _oldOpenModule = openModule;
-openModule = function(moduleId){
-  _oldOpenModule(moduleId);
-  requestAnimationFrame(renderAutoLineNumbers);
-};
-
-window.addEventListener('load', () => requestAnimationFrame(renderAutoLineNumbers));
-window.addEventListener('resize', () => requestAnimationFrame(renderAutoLineNumbers));
-  });
-}
-
-window.addEventListener('load', renderAutoLineNumbers);
-window.addEventListener('resize', renderAutoLineNumbers);
+window.addEventListener('resize', function () {
+  renderAutoLineNumbers();
+});
 </script>
-
+    
 </body>
 </html>
