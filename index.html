@@ -644,31 +644,42 @@
 </div>
 
 <script>
-    // --- LOGIN FUNKTION ---
-    const CORRECT_PASSWORD = "Zeitensprung";
+const CORRECT_PASSWORD = "Zeitensprung";
 
-    function checkPassword() {
-        const passwordInput = document.getElementById('password-input').value;
-        const errorMessage = document.getElementById('error-message');
+function checkPassword() {
+    try {
+        const inputEl = document.getElementById('password-input');
+        const errorEl = document.getElementById('error-message');
+        const loginPage = document.getElementById('login-page');
+        const mainPage = document.getElementById('main-page');
+
+        if (!inputEl || !errorEl || !loginPage || !mainPage) {
+            console.error("Login-Element(e) nicht gefunden.");
+            return;
+        }
+
+        const passwordInput = inputEl.value.trim();
 
         if (passwordInput === CORRECT_PASSWORD) {
-            errorMessage.style.display = 'none';
-            saveLoginStatus();
-            document.getElementById('login-page').classList.add('hidden');
-            document.getElementById('main-page').classList.remove('hidden');
+            errorEl.style.display = 'none';
+            localStorage.setItem('lernplattform_logged_in', 'true');
+            loginPage.classList.add('hidden');
+            mainPage.classList.remove('hidden');
+            console.log("Login erfolgreich");
         } else {
-            errorMessage.style.display = 'block';
-            document.getElementById('password-input').value = '';
-            document.getElementById('password-input').focus();
+            errorEl.style.display = 'block';
+            inputEl.value = '';
+            inputEl.focus();
+            console.log("Passwort falsch:", passwordInput);
         }
+    } catch (e) {
+        console.error("Fehler in checkPassword:", e);
     }
+}
 
-    function handlePasswordKeypress(event) {
-        if (event.key === 'Enter') {
-            checkPassword();
-        }
-    }
-
+function handlePasswordKeypress(event) {
+    if (event.key === 'Enter') checkPassword();
+}
     // --- LOGIN-STATUS SPEICHERN UND PRÜFEN ---
     function saveLoginStatus() {
         localStorage.setItem('lernplattform_logged_in', 'true');
