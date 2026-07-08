@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interaktive Lernplattform</title>
     <style>
+
         /* --- ALLGEMEINES STYLING --- */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -16,6 +17,23 @@
             flex-direction: column;
             align-items: center;
         }
+        <body>
+
+    <!-- NEU: LOGIN SEITE -->
+    <div id="login-page" style="text-align: center; padding: 50px; background: #4e2a28; color: #fffdf0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; position: absolute; z-index: 100;">
+        <h1>Willkommen bei der Reise ins Römische Reich</h1>
+        <p>Hallo Klasse 6, bitte melde dich an, um zu starten.</p>
+        <div style="margin: 30px auto; max-width: 300px;">
+            <input type="password" id="password-input" placeholder="Passwort eingeben" style="padding: 10px; width: 100%; border-radius: 5px; border: none; margin-bottom: 10px;">
+            <button onclick="checkPassword()" style="padding: 10px 20px; cursor: pointer; background: #d4af37; color: #4e2a28; border: none; border-radius: 5px; font-weight: bold;">Mission starten</button>
+        </div>
+        <p id="error-msg" style="color: #ff9999;"></p>
+    </div>
+
+    <!-- Dein bisheriger Code kommt hier in ein wrapper-div -->
+    <div id="app" class="hidden">
+        <!-- Hier alles hinein: portal-header, container etc. -->
+    </div>
 
         /* --- KOPFZEILE (BANNER) --- */
         .portal-header {
@@ -366,6 +384,30 @@
 </div>
 
 <script>
+
+    function checkPassword() {
+        const password = document.getElementById("password-input").value;
+        // Hier dein gewähltes Passwort festlegen
+        if (password === "Zeitensprung") {
+            document.getElementById("login-page").classList.add("hidden");
+            document.getElementById("app").classList.remove("hidden");
+            
+            // OPTIONAL: Wenn du willst, dass sich die Seite den Login merkt:
+            sessionStorage.setItem('isLoggedIn', 'true');
+        } else {
+            document.getElementById("error-msg").innerText = "Falsches Passwort!";
+        }
+    }
+
+    // Damit man nach einem Neuladen nicht sofort wieder eingeloggt ist, 
+    // aber den Inhalt sieht, falls das Passwort in dieser Sitzung schon korrekt war:
+    window.addEventListener('load', () => {
+        if (sessionStorage.getItem('isLoggedIn') === 'true') {
+            document.getElementById("login-page").classList.add("hidden");
+            document.getElementById("app").classList.remove("hidden");
+        }
+    });
+    
     // --- HINTERGRUND-SOUND EINRICHTEN (SICHER GEGEN ABSTÜRZE GEKAPSELT) ---
     let bgSound = null;
     let isMusicPlaying = false;
@@ -589,6 +631,14 @@
         localStorage.setItem('answer_' + currentModuleId, answerText);
         alert("Deine Antwort wurde erfolgreich in deinem Notizbuch gespeichert!");
     }
+
+    // Beim Laden der Seite prüfen, ob ein Modul gespeichert war
+    window.onload = function() {
+        const lastModule = localStorage.getItem('lastModule');
+        if (lastModule) {
+            openModule(lastModule);
+        }
+    };
 </script>
 
 </body>
