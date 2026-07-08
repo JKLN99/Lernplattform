@@ -237,7 +237,7 @@
         }
 
         .material-box {
-            background: #fdfdfd;
+            background: #ffffff;
             border-left: 5px solid #2b579a;
             padding: 20px;
             margin-bottom: 20px;
@@ -245,13 +245,23 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
+        .material-box h3 {
+            color: #2b579a;
+            margin-top: 0;
+        }
+
         .source-box {
-            background: #fffaf0;
-            border-left: 5px solid #b91d47;
+            background: #ffffff;
+            border-left: 5px solid #16a34a;
             padding: 20px;
             margin-bottom: 20px;
             border-radius: 0 8px 8px 0;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .source-box h3 {
+            color: #16a34a;
+            margin-top: 0;
         }
 
         .task-box {
@@ -319,25 +329,26 @@
         /* --- TEXT MIT ZEILENANGABEN (BLOCKSATZ) --- */
         .text-with-lines {
             text-align: justify;
-            line-height: 1.6;
+            line-height: 1.8;
         }
 
         .line-p {
-            margin: 0 0 8px 0;
+            margin: 0 0 12px 0;
             display: flex;
             align-items: flex-start;
         }
 
         .line-number {
             font-size: 0.85em;
-            color: #777;
-            width: 30px;
-            min-width: 30px;
+            color: #999;
+            width: 35px;
+            min-width: 35px;
             user-select: none;
             text-align: right;
-            padding-right: 15px;
+            padding-right: 12px;
             font-family: monospace;
-            margin-top: 3px;
+            margin-top: 0;
+            flex-shrink: 0;
         }
 
         .line-text {
@@ -553,24 +564,64 @@
         }
     }
 
+    // Hilfsfunktion zum Splitten von Text in Zeilen mit Zeilennummern
+    function createLinesWithNumbers(text) {
+        const lines = text.split('\n');
+        let lineCount = 0;
+        let result = '<div class="text-with-lines">';
+        
+        lines.forEach((line, index) => {
+            if (line.trim()) {
+                lineCount++;
+                // Zeilennummer nur alle 5 Zeilen anzeigen
+                const showNumber = (lineCount % 5 === 0) ? lineCount : '';
+                result += `<div class="line-p">`;
+                result += `<div class="line-number">${showNumber}</div>`;
+                result += `<div class="line-text">${line}</div>`;
+                result += `</div>`;
+            }
+        });
+        
+        result += '</div>';
+        return result;
+    }
+
     // --- DATEN DER MODULE ---
     const modulesData = {
         m1: {
             title: "M1: Die Gründung Roms",
-            task: "1) <b>Erläutere</b> zunächst die Position der Geschichtswissenschaft zur Gründung Roms. Fülle dafür das Notizbuch aus.<br><br>2) Finde dich danach mit deinem Sitznachbarn oder deiner Sitznachbarin zusammen und <b>vergleicht</b> eure Ergebnisse!",
+            task: "1) <b>Erläutere</b> zunächst die Position der Geschichtswissenschaft zur Gründung Roms. Fülle dafür das Notizbuch aus.<br><br>2) Finde dich danach mit deinem Sitznachbarn oder deiner Sitznachbarin zusammen und <b>vergleicht</b> eure Ergebnisse! Ergänzt euer Notizbuch gegebenenfalls.<br><br>3) <b>Analysiere</b> die Quelle Q1 zur Gründungssage Roms.<br><br>4) <b>Vergleicht</b> die Aussagen zur Gründung Roms der Geschichtswissenschaft einerseits und die der Sage andererseits. Worin bestehen die zentralen Unterschiede?",
             question: "Deine Ausarbeitung zu Aufgabe 1:",
-            hasExternalLink: true,
-            externalLinkText: "🔍 Zur externen Quellenkritik",
-            externalLinkTarget: "aussenQuellenkritik.png",
-            htmlContent: `<div class="material-box"><h3>D1 | Die Gründung Roms</h3><p>Hier kommt dein Material hin.</p></div>`
+            hasExternalLink: false,
+            htmlContent: `
+                <div class="material-box">
+                    <h3>D1 | <b>Die Gründung Roms: Was die Geschichtswissenschaft berichtet</b></h3>
+                    <div class="text-with-lines">
+                        <div class="line-p"><div class="line-number"></div><div class="line-text"><b>Die ersten Siedlungen</b> Etwa um 1000 v. Chr. ließ sich das Volk der Latiner am Fluss Tiber in Mittelitalien nieder. Sie lebten als Ackerbauern und Hirten. Auf den Hügeln Palatin und Quirinal entstanden zu dieser Zeit kleine Dörfer aus einfachen Hütten.</div></div>
+                        <div class="line-p"><div class="line-number">5</div><div class="line-text">Um etwa 700 v. Chr. existierten schon größere Dörfer auf allen sieben Hügeln. <b>Latiner und Etrusker</b> Um etwa 800 v. Chr. wanderten Etrusker von Norden her in die Gegend ein. Die Herkunft dieses Volkes ist unbekannt. Sicher ist aber, dass die Etrusker Kontakt zur griechischen Hochkultur gehabt hatten.</div></div>
+                        <div class="line-p"><div class="line-number">10</div><div class="line-text">Vielleicht stammten sie ursprünglich sogar aus Griechenland. Archäologische Fundstücke von soliden Steinhäusern, Schmuckstücken und Waffen beweisen, dass es sich um ein kulturell hoch entwickeltes Volk handelte. Die Etrusker siedelten zunächst auf der anderen Seite des Flusses Tiber. Mit der Zeit aber gewannen sie die Oberhand über das Volk der Latiner, deren Hütten auf der gegenüberliegenden Flussseite auf den sieben Hügeln standen.</div></div>
+                        <div class="line-p"><div class="line-number">15</div><div class="line-text"><b>Die Gründung der Stadt Rom</b> Wahrscheinlich waren es die Etrusker, die die Dörfer der Latiner zu einer echten Stadt verschmolzen und Rom gründeten. Der Name „Rom" leitet sich vermutlich von dem etruskischen Königsgeschlecht der Ruma ab. Wann die Stadt Rom genau gegründet wurde, können die Wissenschaftler/innen nicht sagen.</div></div>
+                    </div>
+                </div>
+
+                <div class="source-box">
+                    <h3>Q1 | <b>Die Sage von der Gründung Roms im Jahr 753 v. Chr.</b></h3>
+                    <div class="text-with-lines">
+                        <div class="line-p"><div class="line-number"></div><div class="line-text">Aeneas, der von der Göttin Aphrodite abstammte, konnte sich aus dem brennenden Troja retten. Nach zehn Jahren Irrfahrt landete er in Mittelitalien und heiratete eine dortige Königstochter. Seine Nachkommen wurden ebenfalls Könige. Einer davon war Numitor, ein gutherziger Mann.</div></div>
+                        <div class="line-p"><div class="line-number">5</div><div class="line-text">Doch kurz nach seinem Amtsantritt setzte sein machtgieriger Bruder Amulius ihn ab und ernannte sich selbst zum König. Um Konkurrenz zu verhindern, tötete Amulius Numitors Sohn und zwang Numitors Tochter, Priesterin der Göttin Vesta zu werden, denn diese Vestalinnen durften nicht heiraten und keine Kinder bekommen. So herrschte Amulius viele Jahre.</div></div>
+                        <div class="line-p"><div class="line-number">10</div><div class="line-text">Eines Tages erschien Numitors Tochter am Fluss Tiber der Gott Mars. Die junge Priesterin wurde von ihm schwanger und brachte Zwillinge zur Welt. Als Amulius davon erfuhr, wollte er die Kinder töten. Doch ihre Mutter legte sie in einen Korb, den sie in den Fluss Tiber setzte. Amulius ließ die Mutter der Kinder daraufhin ins Gefängnis werfen.</div></div>
+                        <div class="line-p"><div class="line-number">15</div><div class="line-text">Durch den Schutz ihres Vaters Mars ertranken die Zwillinge nicht und wurden ans Ufer getrieben. Als sie dort vor Hunger schrien, säugte eine Wölfin sie mit ihrer Milch. Kurz darauf fand ein Hirte die Zwillinge und nahm sie mit nach Hause. Jahre später erfuhren die beiden - sie hießen Romulus und Remus - als junge Männer von ihrer wahren königlichen Herkunft.</div></div>
+                        <div class="line-p"><div class="line-number">20</div><div class="line-text">Sie riefen ihre Freunde zusammen, stürmten den Palast des Amulius und töteten ihn. Dann befreiten sie ihre Mutter und setzten ihren alten Großvater Numitor wieder als König ein. Sie selbst wollten eine neue Stadt gründen, und zwar dort, wo die Wölfin sie gesäugt hatte. Durch einen Götterentscheid sollte Romulus der Gründer werden.</div></div>
+                        <div class="line-p"><div class="line-number">25</div><div class="line-text">Als er die Stadtgrenze mit einem Pflug kennzeichnete, hüpfte Remus voller Spott über die Furche hinweg. Wutentbrannt rief Romulus: „So soll es jedem gehen, der meine Stadt angreift!" Und er brachte Remus um. Die neue Stadt nannte Romulus nach ihm selbst: Rom.</div></div>
+                    </div>
+                </div>
+            `
         },
         m2: {
             title: "M2: Die Expansion des Reiches",
-            task: "1) <b>Untersuche</b> die Geschichtskarte des Römischen Reiches.",
+            task: "1) <b>Untersuche</b> die Geschichtskarte des Römischen Reiches im bereitgestellten Material.<br><br>2) <b>Analysiere</b> den Erfolg der römischen Armee.",
             question: "Welche Faktoren machten die römische Armee erfolgreich?",
-            hasExternalLink: true,
-            externalLinkText: "Zum Kartenmaterial (PDF)",
-            externalLinkTarget: "Kartenmaterial.pdf",
+            hasExternalLink: false,
             htmlContent: `<div class="material-box"><h3>D1 | Geschichtskarte</h3><p>Hier kommt dein Material hin.</p></div>`
         },
         m3: {
