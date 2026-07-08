@@ -376,7 +376,7 @@
     text-align: justify;          /* Blocksatz */
     text-justify: inter-word;
     text-align-last: left;        /* letzte Zeile nicht auseinandergezogen */
-    line-height: 1.35;            /* enger Zeilenabstand */
+    line-height: 1.5;            /* enger Zeilenabstand */
     hyphens: auto;
     -webkit-hyphens: auto;
     -ms-hyphens: auto;
@@ -424,6 +424,38 @@
             border-radius: 5px;
             cursor: pointer;
         }
+        /* D1/Q1: sicherer Blocksatz */
+.material-box .text-with-lines .line-text,
+.source-box .text-with-lines .line-text {
+  display: block !important;
+  width: 100% !important;
+  text-align: justify !important;
+  text-justify: inter-word !important;
+  text-align-last: left !important;
+  line-height: 1.35 !important;
+  hyphens: auto !important;
+  -webkit-hyphens: auto !important;
+  -ms-hyphens: auto !important;
+}
+
+/* Layout der Zeilen + Nummer links */
+.material-box .text-with-lines .line-p,
+.source-box .text-with-lines .line-p {
+  position: relative !important;
+  margin: 0 0 6px 0 !important;
+  padding-left: 0 !important;
+}
+
+.material-box .text-with-lines .line-number,
+.source-box .text-with-lines .line-number {
+  position: absolute !important;
+  left: -28px !important;
+  top: 0.1em !important;
+  width: 24px !important;
+  text-align: right !important;
+  font: 12px/1 monospace !important;
+  color: #8a8a8a !important;
+}
     </style>
 </head>
 <body>
