@@ -178,6 +178,28 @@
             transform: scale(1.03);
         }
 
+        /* --- LOGOUT BUTTON --- */
+        .btn-logout {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 8px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: background 0.2s, transform 0.1s;
+            margin-left: 10px;
+        }
+
+        .btn-logout:hover {
+            background-color: #a00000;
+            transform: scale(1.03);
+        }
+
         /* --- INHALTS-CONTAINER --- */
         .container {
             width: 95%;
@@ -430,9 +452,14 @@
             <h1>KLN ⚽</h1>
             <p>Klasse 6</p>
         </div>
-        <button class="btn-audio-toggle" onclick="toggleMusic()" id="music-btn">
-            🎵 Musik an
-        </button>
+        <div style="display: flex; gap: 10px;">
+            <button class="btn-audio-toggle" onclick="toggleMusic()" id="music-btn">
+                🎵 Musik an
+            </button>
+            <button class="btn-logout" onclick="logout()">
+                🚪 Abmelden
+            </button>
+        </div>
     </div>
 
     <div class="container">
@@ -520,6 +547,7 @@
 
         if (passwordInput === CORRECT_PASSWORD) {
             errorMessage.style.display = 'none';
+            saveLoginStatus();
             document.getElementById('login-page').classList.add('hidden');
             document.getElementById('main-page').classList.remove('hidden');
         } else {
@@ -534,6 +562,32 @@
             checkPassword();
         }
     }
+
+    // --- LOGIN-STATUS SPEICHERN UND PRÜFEN ---
+    function saveLoginStatus() {
+        localStorage.setItem('lernplattform_logged_in', 'true');
+    }
+
+    function logout() {
+        localStorage.removeItem('lernplattform_logged_in');
+        document.getElementById('login-page').classList.remove('hidden');
+        document.getElementById('main-page').classList.add('hidden');
+        document.getElementById('password-input').value = '';
+        document.getElementById('password-input').focus();
+    }
+
+    function checkLoginStatus() {
+        const isLoggedIn = localStorage.getItem('lernplattform_logged_in');
+        if (isLoggedIn === 'true') {
+            document.getElementById('login-page').classList.add('hidden');
+            document.getElementById('main-page').classList.remove('hidden');
+        }
+    }
+
+    // Beim Laden der Seite prüfen
+    window.addEventListener('load', function() {
+        checkLoginStatus();
+    });
 
     // --- HINTERGRUND-SOUND ---
     let bgSound = null;
@@ -612,7 +666,7 @@
                         <div class="line-p"><div class="line-number">10</div><div class="line-text">Eines Tages erschien Numitors Tochter am Fluss Tiber der Gott Mars. Die junge Priesterin wurde von ihm schwanger und brachte Zwillinge zur Welt. Als Amulius davon erfuhr, wollte er die Kinder töten. Doch ihre Mutter legte sie in einen Korb, den sie in den Fluss Tiber setzte. Amulius ließ die Mutter der Kinder daraufhin ins Gefängnis werfen.</div></div>
                         <div class="line-p"><div class="line-number">15</div><div class="line-text">Durch den Schutz ihres Vaters Mars ertranken die Zwillinge nicht und wurden ans Ufer getrieben. Als sie dort vor Hunger schrien, säugte eine Wölfin sie mit ihrer Milch. Kurz darauf fand ein Hirte die Zwillinge und nahm sie mit nach Hause. Jahre später erfuhren die beiden - sie hießen Romulus und Remus - als junge Männer von ihrer wahren königlichen Herkunft.</div></div>
                         <div class="line-p"><div class="line-number">20</div><div class="line-text">Sie riefen ihre Freunde zusammen, stürmten den Palast des Amulius und töteten ihn. Dann befreiten sie ihre Mutter und setzten ihren alten Großvater Numitor wieder als König ein. Sie selbst wollten eine neue Stadt gründen, und zwar dort, wo die Wölfin sie gesäugt hatte. Durch einen Götterentscheid sollte Romulus der Gründer werden.</div></div>
-                        <div class="line-p"><div class="line-number">25</div><div class="line-text">Als er die Stadtgrenze mit einem Pflug kennzeichnete, hüpfte Remus voller Spott über die Furche hinweg. Wutentbrannt rief Romulus: „So soll es jedem gehen, der meine Stadt angreift!" Und er brachte Remus um. Die neue Stadt nannte Romulus nach ihm selbst: Rom.</div></div>
+                        <div class="line-p"><div class="line-number">25</div><div class="line-text">Als er die Stadtgrenze mit einem Pflug kennzeichnete, hüpfte Remus voller Spott über die Furche hinweg. Wutentbrandt rief Romulus: „So soll es jedem gehen, der meine Stadt angreift!" Und er brachte Remus um. Die neue Stadt nannte Romulus nach ihm selbst: Rom.</div></div>
                     </div>
                 </div>
             `
