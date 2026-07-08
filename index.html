@@ -518,6 +518,14 @@
           color: #8a8a8a;
         }
 
+        .material-box{
+          border-left: none;
+        }
+
+        .material-box.d1-box{
+          border-left: 5px solid #2b579a;
+        }
+
         /* --- M4 SCHAUBILD --- */
         .board-grid{
           display:grid;
@@ -564,39 +572,44 @@
         @media (max-width:800px){
           .board-grid{ grid-template-columns:1fr; }
         }
-
-        /* ===== FINAL FIX M1 (D1 + Aufgabenbox) ===== */
-        #materials-container .material-box.d1-box{
-          background: #ffffff;
-          border-left: 5px solid #2b579a !important;
-          padding: 20px !important;
-          margin-bottom: 20px !important;
-          border-radius: 0 8px 8px 0 !important;
-          box-shadow: 0 2px 5px rgba(0,0,0,0.05) !important;
+        .aufgabe-analyse-box{
+  margin-top: 40px !important;
         }
+        /* D1-Container ohne durchgehenden Balken */
+/* D1 wieder mit durchgehendem blauem Streifen (wie Q1) */
+.material-box.d1-box{
+  border-left: 5px solid #2b579a !important;
+  padding-left: 20px !important;
+}
 
-        #materials-container .material-box.d1-box .text-with-lines.auto-lines{
-          position: relative;
-          padding-left: 34px !important;
-          margin-bottom: 14px !important;
-        }
+.material-box.d1-box .text-with-lines.auto-lines{
+  border-left: none !important;
+  padding-left: 34px !important;
+  margin-bottom: 14px !important;
+}
 
-        #materials-container .material-box.d1-box .task-box.aufgabe-analyse-box{
-          background: #f4f4f4 !important;
-          border-left: 5px solid #555 !important;
-          padding: 15px !important;
-          margin: 40px 0 25px 0 !important;
-          border-radius: 0 8px 8px 0 !important;
-          width: 100% !important;
-          max-width: 100% !important;
-          box-sizing: border-box !important;
-        }
-
-        #materials-container .material-box.d1-box .task-box.aufgabe-analyse-box h3{
-          margin-top: 0 !important;
-          margin-bottom: 12px !important;
-          text-align: left !important;
-        }
+.material-box.d1-box .task-box.aufgabe-analyse-box{
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  background: #f4f4f4 !important;
+  border-left: 5px solid #555 !important;
+  padding: 15px !important;
+  margin: 40px 0 25px 0 !important;
+  border-radius: 0 8px 8px 0 !important;
+  box-sizing: border-box;
+}
+        /* Aufgabenbox in M1 auf volle Innenbreite der D1-Box */
+#materials-container .material-box.d1-box > .task-box.aufgabe-analyse-box{
+  width: calc(100% - 0px) !important;
+  max-width: none !important;
+  margin: 40px 0 25px 0 !important;
+  padding: 15px !important;
+  background: #f4f4f4 !important;
+  border-left: 5px solid #555 !important;
+  border-radius: 0 8px 8px 0 !important;
+  box-sizing: border-box !important;
+}
     </style>
 </head>
 <body>
@@ -669,7 +682,17 @@
                 </div>
             </div>
         </div>
-
+<div id="m3-overview-page" class="hidden">
+    <button class="btn-back" onclick="showStartPage()">← Zurück zur Übersicht</button>
+    <h2>M3: Herrschaft im Römischen Reich</h2>
+    <p style="text-align: center;">Wähle ein Unterthema aus:</p>
+    <div class="map-grid">
+        <div class="quest-card" onclick="openModule('m3_germanen')">
+            <h3>M3.1</h3>
+            <p>Die Germanen aus der Sicht der Römer</p>
+        </div>
+    </div>
+</div>
         <div id="m4-overview-page" class="hidden">
             <button class="btn-back" onclick="showStartPage()">← Zurück zur Übersicht</button>
             <h2>M4: Untergang des Römischen Reiches</h2>
@@ -916,6 +939,14 @@ const modulesData = {
         hasExternalLink: false,
         text: "Hier kannst du die Materialien zur römischen Herrschaft einfügen."
     },
+    m3_germanen: {
+    title: "M3: Die Germanen aus der Sicht der Römer",
+    image: null,
+    task: "Aufgabenstellung für M3.1",
+    question: "Wie wurden die Germanen aus römischer Sicht dargestellt?",
+    hasExternalLink: false,
+    htmlContent: `<div class="material-box"><h3>D1 | Die Germanen aus der Sicht der Römer</h3><p>Hier kommt dein Material hin.</p></div>`
+},
     m4_aussere: {
         title: "M4: Äußere Ursachen des Untergangs",
         image: null,
@@ -962,6 +993,16 @@ function openModule(moduleId) {
     if (bgSound && !isMusicPlaying) {
         bgSound.play().catch(e => console.log("Audio blockiert"));
     }
+
+    if (moduleId === 'm3') {
+    localStorage.setItem('lastModule', moduleId);
+    document.getElementById('start-page').classList.add('hidden');
+    document.getElementById('module-page').classList.add('hidden');
+    document.getElementById('m4-board-page').classList.add('hidden');
+    document.getElementById('m4-overview-page').classList.add('hidden');
+    document.getElementById('m3-overview-page').classList.remove('hidden');
+    return;
+}
 
     if (moduleId === 'm4') {
         localStorage.setItem('lastModule', moduleId);
