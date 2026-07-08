@@ -513,6 +513,8 @@
             <button id="btn-universal-back" class="btn-back" onclick="handleBackAction()">← Zurück</button>
             
             <h2 id="module-title">Modul Titel</h2>
+
+            <div id="module-image-container"></div>
             
             <div class="task-box">
                 <h3>Aufgabenstellung</h3>
@@ -644,6 +646,8 @@
     const modulesData = {
         m1: {
             title: "M1: Die Gründung Roms",
+            image: "woelfin.png",
+            imageCaption: "<b>Quelle:</b> Kapitolinische Wölfin (Lupa Capitolina): Wölfin mit Romulus und Remus, Bronze, 12. Jahrhundert n. Chr. (laut C14-Datierung; nach traditioneller Sicht etruskisch aus dem 5. Jahrhundert v. Chr.), Zwillinge hinzugefügt im 15. Jahrhundert.",
             task: "<b>1)</b> <b>Erläutere</b> zunächst die Position der Geschichtswissenschaft zur Gründung Roms. Fülle dafür das Notizbuch aus.<br><br><b>2)</b> Finde dich danach mit deinem Sitznachbarn oder deiner Sitznachbarin zusammen und <b>vergleicht</b> eure Ergebnisse! Ergänzt euer Notizbuch gegebenenfalls.",
             question: "Deine Ausarbeitung zu Aufgabe 1:",
             hasExternalLink: false,
@@ -678,6 +682,7 @@
         },
         m2: {
             title: "M2: Die Expansion des Reiches",
+            image: null,
             task: "<b>1)</b> <b>Untersuche</b> die Geschichtskarte des Römischen Reiches im bereitgestellten Material.<br><br><b>2)</b> <b>Analysiere</b> den Erfolg der römischen Armee.",
             question: "Welche Faktoren machten die römische Armee erfolgreich?",
             hasExternalLink: false,
@@ -685,6 +690,7 @@
         },
         m3: {
             title: "M3: Herrschaft im Römischen Reich",
+            image: null,
             task: "Aufgabenstellung für Modul M3",
             question: "Deine Ausarbeitung zu Modul M3:",
             hasExternalLink: false,
@@ -692,6 +698,7 @@
         },
         m4_aussere: {
             title: "M4: Äußere Ursachen des Untergangs",
+            image: null,
             task: "<b>Arbeite heraus</b>, welche Rolle die Angriffe von außen beim Zerfall spielten.",
             question: "Welche äußeren Faktoren führten zum Untergang?",
             hasExternalLink: false,
@@ -699,6 +706,7 @@
         },
         m4_innere: {
             title: "M4: Innere Ursachen des Untergangs",
+            image: null,
             task: "<b>Erkläre</b> die wirtschaftlichen und politischen Krisenherde.",
             question: "Welche inneren Krisen schadeten dem Reich?",
             hasExternalLink: false,
@@ -706,6 +714,7 @@
         },
         m5: {
             title: "M5: Gesellschaft im Römischen Reich",
+            image: null,
             task: "Aufgabenstellung für Modul M5",
             question: "Deine Ausarbeitung zu Modul M5:",
             hasExternalLink: false,
@@ -736,6 +745,20 @@
         if (!data) return;
 
         document.getElementById('module-title').innerText = data.title;
+        
+        // Bild einfügen falls vorhanden
+        const imageContainer = document.getElementById('module-image-container');
+        if (data.image) {
+            imageContainer.innerHTML = `
+                <div class="image-container">
+                    <img src="${data.image}" alt="Modul-Bild" class="material-img">
+                    <div class="image-caption">${data.imageCaption}</div>
+                </div>
+            `;
+        } else {
+            imageContainer.innerHTML = '';
+        }
+
         document.getElementById('module-task').innerHTML = data.task;
         document.getElementById('notebook-question').innerText = data.question;
 
