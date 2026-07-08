@@ -348,34 +348,39 @@
             background: #1e3f70;
         }
 
-        /* --- TEXT MIT ZEILENANGABEN (BLOCKSATZ) --- */
-        .text-with-lines {
-            text-align: justify;
-            line-height: 1.35;
-        }
+       /* --- TEXT MIT ZEILENANGABEN (BLOCKSATZ) --- */
+.text-with-lines{
+    max-width: 760px;
+    margin: 0 auto;
+}
 
-        .line-p {
-            margin: 0 0 12px 0;
-            display: flex;
-            align-items: flex-start;
-        }
+.line-p{
+    position: relative;
+    margin: 0 0 8px 0;
+    padding-left: 0;
+}
 
-        .line-number {
-            font-size: 0.85em;
-            color: #999;
-            width: 35px;
-            min-width: 35px;
-            user-select: none;
-            text-align: right;
-            padding-right: 12px;
-            font-family: monospace;
-            margin-top: 0;
-            flex-shrink: 0;
-        }
+.line-number{
+    position: absolute;
+    left: -28px;          /* Zahl links außerhalb des Textblocks */
+    top: 0.1em;
+    width: 24px;
+    text-align: right;
+    font: 12px/1 monospace;
+    color: #8a8a8a;
+    user-select: none;
+}
 
-        .line-text {
-            flex-grow: 1;
-        }
+.line-text{
+    display: block;
+    text-align: justify;          /* Blocksatz */
+    text-justify: inter-word;
+    text-align-last: left;        /* letzte Zeile nicht auseinandergezogen */
+    line-height: 1.35;            /* enger Zeilenabstand */
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+}
 
         /* --- NOTIZBUCH --- */
         .notebook-toggle {
