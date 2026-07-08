@@ -8,7 +8,7 @@
         /* --- ALLGEMEINES STYLING --- */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #d2b48c; /* Leichtes Pergament-Gelb */
+            background-color: #d2b48c;
             color: #333;
             margin: 0;
             padding: 0 0 40px 0;
@@ -129,7 +129,7 @@
         /* --- KOPFZEILE (BANNER) --- */
         .portal-header {
             width: 100%;
-            background-color: #4e2a28; /* Dunkles Römisch-Braun/Rot */
+            background-color: #4e2a28;
             color: white;
             padding: 15px 25px;
             box-sizing: border-box;
@@ -190,7 +190,7 @@
         }
 
         h1, h2, h3 {
-            color: #8b864e; /* Römisches Rot */
+            color: #8b864e;
             text-align: center;
         }
 
@@ -238,7 +238,7 @@
 
         .material-box {
             background: #fdfdfd;
-            border-left: 5px solid #2b579a; /* Blau für Darstellung */
+            border-left: 5px solid #2b579a;
             padding: 20px;
             margin-bottom: 20px;
             border-radius: 0 8px 8px 0;
@@ -247,7 +247,7 @@
 
         .source-box {
             background: #fffaf0;
-            border-left: 5px solid #b91d47; /* Dunkelrot für Quelle */
+            border-left: 5px solid #b91d47;
             padding: 20px;
             margin-bottom: 20px;
             border-radius: 0 8px 8px 0;
@@ -296,7 +296,7 @@
 
         /* --- EXTERNER LINK BUTTON --- */
         .btn-external-link {
-            background: #2b579a; /* Blau */
+            background: #2b579a;
             color: white;
             border: none;
             padding: 12px 20px;
@@ -318,7 +318,7 @@
 
         /* --- TEXT MIT ZEILENANGABEN (BLOCKSATZ) --- */
         .text-with-lines {
-            text-align: justify; /* Blocksatz */
+            text-align: justify;
             line-height: 1.6;
         }
 
@@ -346,7 +346,7 @@
 
         /* --- NOTIZBUCH --- */
         .notebook-toggle {
-            background: #d4af37; /* Gold */
+            background: #d4af37;
             color: #111;
             border: none;
             padding: 12px 20px;
@@ -509,7 +509,6 @@
 
         if (passwordInput === CORRECT_PASSWORD) {
             errorMessage.style.display = 'none';
-            // Login erfolgreich
             document.getElementById('login-page').classList.add('hidden');
             document.getElementById('main-page').classList.remove('hidden');
         } else {
@@ -525,7 +524,7 @@
         }
     }
 
-    // --- HINTERGRUND-SOUND EINRICHTEN (SICHER GEGEN ABSTÜRZE GEKAPSELT) ---
+    // --- HINTERGRUND-SOUND ---
     let bgSound = null;
     let isMusicPlaying = false;
 
@@ -534,7 +533,7 @@
         bgSound.loop = true;
         bgSound.volume = 0.2; 
     } catch (e) {
-        console.log("Audio-Objekt konnte vom Browser nicht initialisiert werden.");
+        console.log("Audio konnte nicht geladen werden.");
     }
 
     function toggleMusic() {
@@ -556,106 +555,60 @@
 
     // --- DATEN DER MODULE ---
     const modulesData = {
-           m1: {
-        title: "M1: Die Gründung Roms",
-        task: "1) <b>Erläutere</b> zunächst die Position der Geschichtswissenschaft zur Gründung Roms. Fülle dafür das Notizbuch aus.<br><br>" +
-              "2) Finde dich danach mit deinem Sitznachbarn oder deiner Sitznachbarin zusammen und <b>vergleicht</b> eure Ergebnisse! Ergänzt euer Notizbuch gegebenenfalls.<br><br>" +
-              "3) <b>Analysiere</b> die Quelle Q1 zur Gründungssage Roms.<br><br>" +
-              "4) <b>Vergleicht</b> die Aussagen zur Gründung Roms der Geschichtswissenschaft einerseits und die der Sage andererseits. Worin bestehen die zentralen Unterschiede? <b>Nenne</b> 3 zent[...]
-        question: "Deine Ausarbeitung zu Aufgabe 1:",
-                hasExternalLink: true,
-                externalLinkText: "🔍 Zur externen Quellenkritik",
-                externalLinkTarget: "aussenQuellenkritik.png",
-                htmlContent: `
-                    <div class="image-container">
-                        <img src="woelfin.jpg" alt="Kapitolinische Wölfin" class="material-img">
-                        <div class="image-caption">
-                            Quelle: Kapitolinische Wölfin (Lupa Capitolina): Wölfin mit Romulus und Remus, Bronze, 12. Jahrhundert n. Chr. (laut C14-Datierung; nach traditioneller Sicht etruskisch [...]
-                        </div>
-                    </div>
-                    <div class="material-box">
-                        <h3>D1 | Die Gründung Roms: Was die Geschichtswissenschaft berichtet</h3>
-                        <div class="text-with-lines">
-                            <div class="line-p"><div class="line-number">1</div><div class="line-text"><b>Die ersten Siedlungen:</b> Etwa um 1000 v. Chr. ließ sich das Volk der Latiner am Fluss Tibe[...]
-                            <div class="line-p"><div class="line-number">5</div><div class="line-text">Um etwa 700 v. Chr. existierten schon größere Dörfer auf allen sieben Hügeln. <b>Latiner und[...]
-                            <div class="line-p"><div class="line-number">10</div><div class="line-text">Vielleicht stammten sie ursprünglich sogar aus Griechenland. Archäologische Fundstücke von s[...]
-                            <div class="line-p"><div class="line-number">15</div><div class="line-text">Mit der Zeit aber gewannen sie die Oberhand über das Volk der Latiner, deren Hütten auf der g[...]
-                            <div class="line-p"><div class="line-number">20</div><div class="line-text">Der Name „Rom" leitet sich vermutlich von dem etruskischen Königsgeschlecht der Ruma ab. Wan[...]
-                        </div>
-                    </div>
-                    <div class="source-box">
-                        <h3>Q1 | Die Gründungssage Roms</h3>
-                        <div class="text-with-lines">
-                            <div class="line-p"><div class="line-number">1</div><div class="line-text"><b>Die Sage von der Gründung Roms im Jahr 753 v. Chr.:</b> Aeneas, der von der Göttin Aphrodit[...]
-                            <div class="line-p"><div class="line-number">5</div><div class="line-text">Einer davon war Numitor, ein gutherziger Mann. Doch kurz nach seinem Amtsantritt setzte sein mac[...]
-                            <div class="line-p"><div class="line-number">10</div><div class="line-text">denn diese Vestalinnen durften nicht heiraten und keine Kinder bekommen. So herrschte Amulius v[...]
-                            <div class="line-p"><div class="line-number">15</div><div class="line-text">Doch ihre Mutter legte sie in einen Korb, den sie in den Fluss Tiber setzte. Amulius ließ die [...]
-                            <div class="line-p"><div class="line-number">20</div><div class="line-text">Kurz darauf fand ein Hirte die Zwillinge und nahm sie mit nach Hause. Jahre später erfuhren di[...]
-                            <div class="line-p"><div class="line-number">25</div><div class="line-text">Dann befreiten sie ihre Mutter und setzten ihren alten Großvater Numitor wieder als König ein[...]
-                            <div class="line-p"><div class="line-number">30</div><div class="line-text">Als er die Stadtgrenze mit einem Pflug kennzeichnete, hüpfte Remus voller Spott über die Furc[...]
-                        </div>
-                    </div>
-                `
-            },
-            m2: {
-                title: "M2: Die Expansion des Reiches",
-                task: "1) <b>Untersuche</b> die Geschichtskarte des Römischen Reiches im bereitgestellten Material.<br><br>2) <b>Analysiere</b> den Erfolg der römischen Armee und notiere die wichti[...]
-                question: "Welche Faktoren machten die römische Armee so erfolgreich und wie weit dehnte sich das Reich aus?",
-                hasExternalLink: true,
-                externalLinkText: "Zum Kartenmaterial (PDF)",
-                externalLinkTarget: "Kartenmaterial.pdf",
-                htmlContent: `
-                    <div class="material-box">
-                        <h3>D1 | Geschichtskarte des Römischen Reiches</h3>
-                        <div class="text-with-lines">
-                            <div class="line-p"><div class="line-number">1</div><div class="line-text">Durch disziplinierte Legionen und geschickte Bündnisse breitete sich Rom über den gesamten Mit[...]
-                            <div class="line-p"><div class="line-number">3</div><div class="line-text">Aus der kleinen Republik am Tiber wurde im Laufe der Jahrhunderte ein riesiges Weltreich (Imperi[...]
-                        </div>
-                    </div>
-                `
-            },
-            m3: {
-                title: "M3: Herrschaft im Römischen Reich",
-                task: "Hier wird die Aufgabenstellung für das Modul M3 stehen.",
-                question: "Deine Ausarbeitung zu Modul M3:",
-                hasExternalLink: false,
-                text: "Hier kannst du bald die Materialien und Quellen zur römischen Herrschaft einfügen."
-            },
-            m4_aussere: {
-                title: "M4: Äußere Ursachen des Untergangs",
-                task: "<b>Arbeite heraus</b>, welche Rolle die Angriffe von außen und die Völkerwanderung beim Zerfall des Reiches spielten.",
-                question: "Welche äußeren Faktoren führten zum Untergang?",
-                hasExternalLink: false,
-                text: "<b>D2 - Äußere Ursachen für den Untergang des Römischen Reiches Trotz einiger Auseinandersetzungen an den Grenzen erlebte das Römische Reich im 1. und 2. Jahrhundert n. Ch[...]
-            },
-            m4_innere: {
-                title: "M4: Innere Ursachen des Untergangs",
-                task: "<b>Erkläre</b> die wirtschaftlichen und politischen Krisenherde, die das Reich von innen heraus geschwächt haben.",
-                question: "Welche inneren Krisen schadeten dem Reich?",
-                hasExternalLink: false,
-                text: "<b>Innere Krisen:</b> Häufige Bürgerkriege um die Kaiserkrone, eine hohe Inflation, Korruption in der Verwaltung und wirtschaftliche Probleme schwächten Rom über Jahrzehnte[...]
-            },
-            m5: {
-                title: "M5: Gesellschaft im Römischen Reich",
-                task: "Hier wird die Aufgabenstellung für das Modul M5 stehen.",
-                question: "Deine Ausarbeitung zu Modul M5:",
-                hasExternalLink: false,
-                text: "Hier kannst du bald Texte zur römischen Familie, Sklaven, Patriziern und Plebejern platzieren."
-            }
-        };
+        m1: {
+            title: "M1: Die Gründung Roms",
+            task: "1) <b>Erläutere</b> zunächst die Position der Geschichtswissenschaft zur Gründung Roms. Fülle dafür das Notizbuch aus.<br><br>2) Finde dich danach mit deinem Sitznachbarn oder deiner Sitznachbarin zusammen und <b>vergleicht</b> eure Ergebnisse!",
+            question: "Deine Ausarbeitung zu Aufgabe 1:",
+            hasExternalLink: true,
+            externalLinkText: "🔍 Zur externen Quellenkritik",
+            externalLinkTarget: "aussenQuellenkritik.png",
+            htmlContent: `<div class="material-box"><h3>D1 | Die Gründung Roms</h3><p>Hier kommt dein Material hin.</p></div>`
+        },
+        m2: {
+            title: "M2: Die Expansion des Reiches",
+            task: "1) <b>Untersuche</b> die Geschichtskarte des Römischen Reiches.",
+            question: "Welche Faktoren machten die römische Armee erfolgreich?",
+            hasExternalLink: true,
+            externalLinkText: "Zum Kartenmaterial (PDF)",
+            externalLinkTarget: "Kartenmaterial.pdf",
+            htmlContent: `<div class="material-box"><h3>D1 | Geschichtskarte</h3><p>Hier kommt dein Material hin.</p></div>`
+        },
+        m3: {
+            title: "M3: Herrschaft im Römischen Reich",
+            task: "Aufgabenstellung für Modul M3",
+            question: "Deine Ausarbeitung zu Modul M3:",
+            hasExternalLink: false,
+            text: "Hier kannst du die Materialien zur römischen Herrschaft einfügen."
+        },
+        m4_aussere: {
+            title: "M4: Äußere Ursachen des Untergangs",
+            task: "<b>Arbeite heraus</b>, welche Rolle die Angriffe von außen beim Zerfall spielten.",
+            question: "Welche äußeren Faktoren führten zum Untergang?",
+            hasExternalLink: false,
+            text: "Äußere Ursachen für den Untergang des Römischen Reiches."
+        },
+        m4_innere: {
+            title: "M4: Innere Ursachen des Untergangs",
+            task: "<b>Erkläre</b> die wirtschaftlichen und politischen Krisenherde.",
+            question: "Welche inneren Krisen schadeten dem Reich?",
+            hasExternalLink: false,
+            text: "Innere Krisen: Häufige Bürgerkriege, Inflation und Korruption schwächten Rom."
+        },
+        m5: {
+            title: "M5: Gesellschaft im Römischen Reich",
+            task: "Aufgabenstellung für Modul M5",
+            question: "Deine Ausarbeitung zu Modul M5:",
+            hasExternalLink: false,
+            text: "Hier kannst du Texte zur römischen Familie platzieren."
+        }
+    };
 
     let currentModuleId = "";
 
     // --- NAVIGATION ---
     function openModule(moduleId) {
-        // Sound-Start komplett unabhängig machen
         if (bgSound && !isMusicPlaying) {
-            bgSound.play().then(() => {
-                document.getElementById('music-btn').innerHTML = "⏸️ Musik aus";
-                isMusicPlaying = true;
-            }).catch(e => {
-                console.log("Audio blockiert – kein Problem, Seite schaltet trotzdem um.");
-            });
+            bgSound.play().catch(e => console.log("Audio blockiert"));
         }
 
         if (moduleId === 'm4') {
@@ -666,7 +619,6 @@
             return;
         }
 
-        // Speichere letztes Modul für alle anderen Module
         localStorage.setItem('lastModule', moduleId);
         currentModuleId = moduleId;
         const data = modulesData[moduleId];
@@ -681,12 +633,7 @@
         if (data.htmlContent) {
             container.innerHTML = data.htmlContent;
         } else {
-            container.innerHTML = `
-                <div class="material-box">
-                    <h3>📜 Material & Quellen</h3>
-                    <p>${data.text}</p>
-                </div>
-            `;
+            container.innerHTML = `<div class="material-box"><h3>📜 Material & Quellen</h3><p>${data.text}</p></div>`;
         }
 
         const extBtn = document.getElementById('external-link-btn');
@@ -699,9 +646,8 @@
         }
 
         const savedAnswer = localStorage.getItem('answer_' + moduleId);
-        document.getElementById('notebook-answer').value = savedAnswer ? savedAnswer : "";
+        document.getElementById('notebook-answer').value = savedAnswer || "";
 
-        // SEITEN SICHTBAR SCHALTEN
         document.getElementById('start-page').classList.add('hidden');
         document.getElementById('m4-overview-page').classList.add('hidden');
         document.getElementById('module-page').classList.remove('hidden');
@@ -731,7 +677,7 @@
     function saveAnswer() {
         const answerText = document.getElementById('notebook-answer').value;
         localStorage.setItem('answer_' + currentModuleId, answerText);
-        alert("Deine Antwort wurde erfolgreich in deinem Notizbuch gespeichert!");
+        alert("Deine Antwort wurde erfolgreich gespeichert!");
     }
 </script>
 
