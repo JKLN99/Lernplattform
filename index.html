@@ -518,14 +518,6 @@
           color: #8a8a8a;
         }
 
-        .material-box{
-          border-left: none;
-        }
-
-        .material-box.d1-box{
-          border-left: 5px solid #2b579a;
-        }
-
         /* --- M4 SCHAUBILD --- */
         .board-grid{
           display:grid;
@@ -572,44 +564,39 @@
         @media (max-width:800px){
           .board-grid{ grid-template-columns:1fr; }
         }
-        .aufgabe-analyse-box{
-  margin-top: 40px !important;
+
+        /* ===== FINAL FIX M1 (D1 + Aufgabenbox) ===== */
+        #materials-container .material-box.d1-box{
+          background: #ffffff;
+          border-left: 5px solid #2b579a !important;
+          padding: 20px !important;
+          margin-bottom: 20px !important;
+          border-radius: 0 8px 8px 0 !important;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.05) !important;
         }
-        /* D1-Container ohne durchgehenden Balken */
-/* D1 wieder mit durchgehendem blauem Streifen (wie Q1) */
-.material-box.d1-box{
-  border-left: 5px solid #2b579a !important;
-  padding-left: 20px !important;
-}
 
-.material-box.d1-box .text-with-lines.auto-lines{
-  border-left: none !important;
-  padding-left: 34px !important;
-  margin-bottom: 14px !important;
-}
+        #materials-container .material-box.d1-box .text-with-lines.auto-lines{
+          position: relative;
+          padding-left: 34px !important;
+          margin-bottom: 14px !important;
+        }
 
-.material-box.d1-box .task-box.aufgabe-analyse-box{
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  background: #f4f4f4 !important;
-  border-left: 5px solid #555 !important;
-  padding: 15px !important;
-  margin: 40px 0 25px 0 !important;
-  border-radius: 0 8px 8px 0 !important;
-  box-sizing: border-box;
-}
-        /* Aufgabenbox in M1 auf volle Innenbreite der D1-Box */
-#materials-container .material-box.d1-box > .task-box.aufgabe-analyse-box{
-  width: calc(100% - 0px) !important;
-  max-width: none !important;
-  margin: 40px 0 25px 0 !important;
-  padding: 15px !important;
-  background: #f4f4f4 !important;
-  border-left: 5px solid #555 !important;
-  border-radius: 0 8px 8px 0 !important;
-  box-sizing: border-box !important;
-}
+        #materials-container .material-box.d1-box .task-box.aufgabe-analyse-box{
+          background: #f4f4f4 !important;
+          border-left: 5px solid #555 !important;
+          padding: 15px !important;
+          margin: 40px 0 25px 0 !important;
+          border-radius: 0 8px 8px 0 !important;
+          width: 100% !important;
+          max-width: 100% !important;
+          box-sizing: border-box !important;
+        }
+
+        #materials-container .material-box.d1-box .task-box.aufgabe-analyse-box h3{
+          margin-top: 0 !important;
+          margin-bottom: 12px !important;
+          text-align: left !important;
+        }
     </style>
 </head>
 <body>
