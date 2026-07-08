@@ -576,20 +576,26 @@
   margin-top: 40px !important;
         }
         /* D1-Container ohne durchgehenden Balken */
+/* D1 wieder mit durchgehendem blauem Streifen (wie Q1) */
 .material-box.d1-box{
-  border-left: none !important;
+  border-left: 5px solid #2b579a !important;
+  padding-left: 20px !important;
 }
+
 .material-box.d1-box .text-with-lines.auto-lines{
-  border-left: 5px solid #2b579a;
-  padding-left: 14px;   /* Abstand Text zum Balken */
-  margin-bottom: 14px;  /* kleiner Abstand nach unten */
+  border-left: none !important;
+  padding-left: 34px !important;
+  margin-bottom: 14px !important;
 }
-        .aufgabe-analyse-box{
-  margin-top: 40px !important;
+
+.material-box.d1-box .task-box.aufgabe-analyse-box{
+  display: block;
+  width: 100%;
+  max-width: 100%;
   background: #f4f4f4 !important;
   border-left: 5px solid #555 !important;
   padding: 15px !important;
-  margin-bottom: 25px !important;
+  margin: 40px 0 25px 0 !important;
   border-radius: 0 8px 8px 0 !important;
   box-sizing: border-box;
 }
