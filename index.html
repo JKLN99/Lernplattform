@@ -17,6 +17,115 @@
             align-items: center;
         }
 
+        /* --- LOGIN SEITE --- */
+        .login-page {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #d2b48c 0%, #8b6f47 100%);
+        }
+
+        .login-container {
+            background: #f5f5f0;
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            border: 3px solid #4e2a28;
+        }
+
+        .login-container h1 {
+            color: #4e2a28;
+            font-size: 32px;
+            margin: 0 0 10px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .login-container p {
+            color: #555;
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 10px 0 30px 0;
+        }
+
+        .greeting {
+            color: #8b864e;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #fffdf0;
+            border-left: 5px solid #d4af37;
+            border-radius: 4px;
+        }
+
+        .password-field {
+            margin: 30px 0;
+        }
+
+        .password-field label {
+            display: block;
+            color: #4e2a28;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .password-field input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #4e2a28;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+            background: #fffdf0;
+            color: #333;
+            transition: border-color 0.3s;
+        }
+
+        .password-field input:focus {
+            outline: none;
+            border-color: #d4af37;
+            box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-login {
+            background: #4e2a28;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s, transform 0.1s;
+            box-sizing: border-box;
+        }
+
+        .btn-login:hover {
+            background: #a00000;
+            transform: scale(1.02);
+        }
+
+        .btn-login:active {
+            transform: scale(0.98);
+        }
+
+        .error-message {
+            color: #d32f2f;
+            font-weight: bold;
+            margin-top: 15px;
+            padding: 10px;
+            background: #ffebee;
+            border-radius: 4px;
+            display: none;
+        }
+
         /* --- KOPFZEILE (BANNER) --- */
         .portal-header {
             width: 100%;
@@ -281,91 +390,141 @@
 </head>
 <body>
 
-<div class="portal-header">
-    <div class="header-text">
-        <h1>KLN ⚽</h1>
-        <p>Klasse 6</p>
+<!-- LOGIN SEITE -->
+<div id="login-page" class="login-page">
+    <div class="login-container">
+        <h1>🏛️ Willkommen!</h1>
+        <div class="greeting">
+            <p>Hallo! Ich bin Herr Klenner.<br>Willkommen zur interaktiven Lernplattform über das Römische Reich!</p>
+        </div>
+        <p style="color: #333; margin: 20px 0;">Um dein Abenteuer zu beginnen, gib bitte das Passwort ein:</p>
+        
+        <div class="password-field">
+            <label for="password-input">🔑 Passwort</label>
+            <input type="password" id="password-input" placeholder="Gib das Passwort ein..." onkeypress="handlePasswordKeypress(event)">
+        </div>
+        
+        <button class="btn-login" onclick="checkPassword()">🚀 Zum Lernen</button>
+        
+        <div id="error-message" class="error-message">
+            ❌ Passwort falsch! Bitte versuche es erneut.
+        </div>
     </div>
-    <button class="btn-audio-toggle" onclick="toggleMusic()" id="music-btn">
-        🎵 Musik an
-    </button>
 </div>
 
-<div class="container">
-
-    <div id="start-page">
-        <h2>Das Römische Reich</h2>
-        <p style="text-align: center;">Wähle eine Mission aus, um dein Abenteuer zu beginnen!</p>
-        
-        <div class="map-grid">
-            <div class="quest-card" onclick="openModule('m1')">
-                <h3>M1</h3>
-                <p>Die Gründung Roms</p>
-            </div>
-            <div class="quest-card" onclick="openModule('m2')">
-                <h3>M2</h3>
-                <p>Die Expansion des Reiches</p>
-            </div>
-            <div class="quest-card" onclick="openModule('m3')">
-                <h3>M3</h3>
-                <p>Herrschaft im Römischen Reich</p>
-            </div>
-            <div class="quest-card" onclick="openModule('m4')">
-                <h3>M4</h3>
-                <p>Untergang des Römischen Reiches</p>
-            </div>
-            <div class="quest-card" onclick="openModule('m5')">
-                <h3>M5</h3>
-                <p>Gesellschaft im Römischen Reich</p>
-            </div>
+<!-- HAUPTSEITE -->
+<div id="main-page" class="hidden">
+    <div class="portal-header">
+        <div class="header-text">
+            <h1>KLN ⚽</h1>
+            <p>Klasse 6</p>
         </div>
+        <button class="btn-audio-toggle" onclick="toggleMusic()" id="music-btn">
+            🎵 Musik an
+        </button>
     </div>
 
-    <div id="m4-overview-page" class="hidden">
-        <button class="btn-back" onclick="showStartPage()">← Zurück zur Übersicht</button>
-        <h2>M4: Untergang des Römischen Reiches</h2>
-        <p style="text-align: center;">Wähle einen Schwerpunkt aus, um die Ursachen zu untersuchen:</p>
-        
-        <div class="map-grid">
-            <div class="quest-card" onclick="openModule('m4_aussere')">
-                <h3>⚔️ Äußere Ursachen</h3>
-                <p>Kriege, Völkerwanderung & Grenzen</p>
+    <div class="container">
+
+        <div id="start-page">
+            <h2>Das Römische Reich</h2>
+            <p style="text-align: center;">Wähle eine Mission aus, um dein Abenteuer zu beginnen!</p>
+            
+            <div class="map-grid">
+                <div class="quest-card" onclick="openModule('m1')">
+                    <h3>M1</h3>
+                    <p>Die Gründung Roms</p>
+                </div>
+                <div class="quest-card" onclick="openModule('m2')">
+                    <h3>M2</h3>
+                    <p>Die Expansion des Reiches</p>
+                </div>
+                <div class="quest-card" onclick="openModule('m3')">
+                    <h3>M3</h3>
+                    <p>Herrschaft im Römischen Reich</p>
+                </div>
+                <div class="quest-card" onclick="openModule('m4')">
+                    <h3>M4</h3>
+                    <p>Untergang des Römischen Reiches</p>
+                </div>
+                <div class="quest-card" onclick="openModule('m5')">
+                    <h3>M5</h3>
+                    <p>Gesellschaft im Römischen Reich</p>
+                </div>
             </div>
-            <div class="quest-card" onclick="openModule('m4_innere')">
-                <h3>🏛️ Innere Ursachen</h3>
-                <p>Wirtschaft, Krisen & Machtkämpfe</p>
+        </div>
+
+        <div id="m4-overview-page" class="hidden">
+            <button class="btn-back" onclick="showStartPage()">← Zurück zur Übersicht</button>
+            <h2>M4: Untergang des Römischen Reiches</h2>
+            <p style="text-align: center;">Wähle einen Schwerpunkt aus, um die Ursachen zu untersuchen:</p>
+            
+            <div class="map-grid">
+                <div class="quest-card" onclick="openModule('m4_aussere')">
+                    <h3>⚔️ Äußere Ursachen</h3>
+                    <p>Kriege, Völkerwanderung & Grenzen</p>
+                </div>
+                <div class="quest-card" onclick="openModule('m4_innere')">
+                    <h3>🏛️ Innere Ursachen</h3>
+                    <p>Wirtschaft, Krisen & Machtkämpfe</p>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div id="module-page" class="hidden">
-        <button id="btn-universal-back" class="btn-back" onclick="handleBackAction()">← Zurück</button>
-        
-        <h2 id="module-title">Modul Titel</h2>
-        
-        <div class="task-box">
-            <h3>Aufgabenstellung</h3>
-            <p id="module-task">Hier steht die Aufgabe...</p>
+        <div id="module-page" class="hidden">
+            <button id="btn-universal-back" class="btn-back" onclick="handleBackAction()">← Zurück</button>
+            
+            <h2 id="module-title">Modul Titel</h2>
+            
+            <div class="task-box">
+                <h3>Aufgabenstellung</h3>
+                <p id="module-task">Hier steht die Aufgabe...</p>
+            </div>
+            
+            <div id="materials-container"></div>
+
+            <button class="notebook-toggle" onclick="toggleNotebook()">📖 Notizbuch öffnen / schließen</button>
+            
+            <div id="notebook-container" class="notebook hidden">
+                <h3>Dein Forschungs-Notizbuch</h3>
+                <p id="notebook-question">Frage?</p>
+                <textarea id="notebook-answer" placeholder="Schreibe deine Antwort hier hinein..."></textarea>
+                <br>
+                <button class="btn-save" onclick="saveAnswer()">💾 Antwort im Modul speichern</button>
+            </div>
+
+            <a id="external-link-btn" href="#" target="_blank" class="btn-external-link hidden">🔍 Button-Text</a>
         </div>
-        
-        <div id="materials-container"></div>
 
-        <button class="notebook-toggle" onclick="toggleNotebook()">📖 Notizbuch öffnen / schließen</button>
-        
-        <div id="notebook-container" class="notebook hidden">
-            <h3>Dein Forschungs-Notizbuch</h3>
-            <p id="notebook-question">Frage?</p>
-            <textarea id="notebook-answer" placeholder="Schreibe deine Antwort hier hinein..."></textarea>
-            <br>
-            <button class="btn-save" onclick="saveAnswer()">💾 Antwort im Modul speichern</button>
-        </div>
-
-        <a id="external-link-btn" href="#" target="_blank" class="btn-external-link hidden">🔍 Button-Text</a>
     </div>
-
 </div>
 
 <script>
+    // --- LOGIN FUNKTION ---
+    const CORRECT_PASSWORD = "Zeitensprung";
+
+    function checkPassword() {
+        const passwordInput = document.getElementById('password-input').value;
+        const errorMessage = document.getElementById('error-message');
+
+        if (passwordInput === CORRECT_PASSWORD) {
+            errorMessage.style.display = 'none';
+            // Login erfolgreich
+            document.getElementById('login-page').classList.add('hidden');
+            document.getElementById('main-page').classList.remove('hidden');
+        } else {
+            errorMessage.style.display = 'block';
+            document.getElementById('password-input').value = '';
+            document.getElementById('password-input').focus();
+        }
+    }
+
+    function handlePasswordKeypress(event) {
+        if (event.key === 'Enter') {
+            checkPassword();
+        }
+    }
+
     // --- HINTERGRUND-SOUND EINRICHTEN (SICHER GEGEN ABSTÜRZE GEKAPSELT) ---
     let bgSound = null;
     let isMusicPlaying = false;
@@ -398,98 +557,92 @@
     // --- DATEN DER MODULE ---
     const modulesData = {
            m1: {
-    title: "M1: Die Gründung Roms",
-    task: "1) <b>Erläutere</b> zunächst die Position der Geschichtswissenschaft zur Gründung Roms. Fülle dafür das Notizbuch aus.<br><br>" +
-          "2) Finde dich danach mit deinem Sitznachbarn oder deiner Sitznachbarin zusammen und <b>vergleicht</b> eure Ergebnisse! Ergänzt euer Notizbuch gegebenenfalls.<br><br>" +
-          "3) <b>Analysiere</b> die Quelle Q1 zur Gründungssage Roms.<br><br>" +
-          "4) <b>Vergleicht</b> die Aussagen zur Gründung Roms der Geschichtswissenschaft einerseits und die der Sage andererseits. Worin bestehen die zentralen Unterschiede? <b>Nenne</b> 3 zentrale Unterschiede.",
-    question: "Deine Ausarbeitung zu Aufgabe 1:",
-            isCustomLayout: true, 
-            hasExternalLink: true,
-            externalLinkText: "🔍 Zur externen Quellenkritik",
-            externalLinkTarget: "aussenQuellenkritik.png",
-            htmlContent: `
-                <div class="image-container">
-                    <img src="woelfin.jpg" alt="Kapitolinische Wölfin" class="material-img">
-                    <div class="image-caption">
-                        Quelle: Kapitolinische Wölfin (Lupa Capitolina): Wölfin mit Romulus und Remus, Bronze, 12. Jahrhundert n. Chr. (laut C14-Datierung; nach traditioneller Sicht etruskisch aus dem 5. Jahrhundert v. Chr.), Zwillinge hinzugefügt im 15. Jahrhundert.
+        title: "M1: Die Gründung Roms",
+        task: "1) <b>Erläutere</b> zunächst die Position der Geschichtswissenschaft zur Gründung Roms. Fülle dafür das Notizbuch aus.<br><br>" +
+              "2) Finde dich danach mit deinem Sitznachbarn oder deiner Sitznachbarin zusammen und <b>vergleicht</b> eure Ergebnisse! Ergänzt euer Notizbuch gegebenenfalls.<br><br>" +
+              "3) <b>Analysiere</b> die Quelle Q1 zur Gründungssage Roms.<br><br>" +
+              "4) <b>Vergleicht</b> die Aussagen zur Gründung Roms der Geschichtswissenschaft einerseits und die der Sage andererseits. Worin bestehen die zentralen Unterschiede? <b>Nenne</b> 3 zent[...]
+        question: "Deine Ausarbeitung zu Aufgabe 1:",
+                hasExternalLink: true,
+                externalLinkText: "🔍 Zur externen Quellenkritik",
+                externalLinkTarget: "aussenQuellenkritik.png",
+                htmlContent: `
+                    <div class="image-container">
+                        <img src="woelfin.jpg" alt="Kapitolinische Wölfin" class="material-img">
+                        <div class="image-caption">
+                            Quelle: Kapitolinische Wölfin (Lupa Capitolina): Wölfin mit Romulus und Remus, Bronze, 12. Jahrhundert n. Chr. (laut C14-Datierung; nach traditioneller Sicht etruskisch [...]
+                        </div>
                     </div>
-                </div>
-                <div class="material-box">
-                    <h3>D1 | Die Gründung Roms: Was die Geschichtswissenschaft berichtet</h3>
-                    <div class="text-with-lines">
-                        <div class="line-p"><div class="line-number">1</div><div class="line-text"><b>Die ersten Siedlungen:</b> Etwa um 1000 v. Chr. ließ sich das Volk der Latiner am Fluss Tiber in Mittelitalien nieder. Sie lebten als Ackerbauern und Hirten. Auf den Hügeln Palatin und Quirinal entstanden zu dieser Zeit kleine Dörfer aus einfachen Hütten.</div></div>
-                        <div class="line-p"><div class="line-number">5</div><div class="line-text">Um etwa 700 v. Chr. existierten schon größere Dörfer auf allen sieben Hügeln. <b>Latiner und Etrusker:</b> Um etwa 800 v. Chr. wanderten Etrusker von Norden her in die Gegend ein. Die Herkunft dieses Volkes ist unbekannt. Sicher ist aber, dass die Etrusker Kontakt zur griechischen Hochkultur gehabt hatten.</div></div>
-                        <div class="line-p"><div class="line-number">10</div><div class="line-text">Vielleicht stammten sie ursprünglich sogar aus Griechenland. Archäologische Fundstücke von soliden Steinhäusern, Schmuckstücken und Waffen beweisen, dass es sich um ein kulturell hoch entwickeltes Volk handelte. Die Etrusker siedelten zunächst auf der anderen Seite des Flusses Tiber.</div></div>
-                        <div class="line-p"><div class="line-number">15</div><div class="line-text">Mit der Zeit aber gewannen sie die Oberhand über das Volk der Latiner, deren Hütten auf der gegenüberliegenden Flussseite auf den sieben Hügeln standen. <b>Die Gründung der Stadt Rom:</b> Wahrscheinlich waren es die Etrusker, die die Dörfer der Latiner zu einer echten Stadt verschmolzen und Rom gründeten.</div></div>
-                        <div class="line-p"><div class="line-number">20</div><div class="line-text">Der Name „Rom" leitet sich vermutlich von dem etruskischen Königsgeschlecht der Ruma ab. Wann die Stadt Rom genau gegründet wurde, können die Wissenschaftler/innen nicht sagen.</div></div>
+                    <div class="material-box">
+                        <h3>D1 | Die Gründung Roms: Was die Geschichtswissenschaft berichtet</h3>
+                        <div class="text-with-lines">
+                            <div class="line-p"><div class="line-number">1</div><div class="line-text"><b>Die ersten Siedlungen:</b> Etwa um 1000 v. Chr. ließ sich das Volk der Latiner am Fluss Tibe[...]
+                            <div class="line-p"><div class="line-number">5</div><div class="line-text">Um etwa 700 v. Chr. existierten schon größere Dörfer auf allen sieben Hügeln. <b>Latiner und[...]
+                            <div class="line-p"><div class="line-number">10</div><div class="line-text">Vielleicht stammten sie ursprünglich sogar aus Griechenland. Archäologische Fundstücke von s[...]
+                            <div class="line-p"><div class="line-number">15</div><div class="line-text">Mit der Zeit aber gewannen sie die Oberhand über das Volk der Latiner, deren Hütten auf der g[...]
+                            <div class="line-p"><div class="line-number">20</div><div class="line-text">Der Name „Rom" leitet sich vermutlich von dem etruskischen Königsgeschlecht der Ruma ab. Wan[...]
+                        </div>
                     </div>
-                </div>
-                <div class="source-box">
-                    <h3>Q1 | Die Gründungssage Roms</h3>
-                    <div class="text-with-lines">
-                        <div class="line-p"><div class="line-number">1</div><div class="line-text"><b>Die Sage von der Gründung Roms im Jahr 753 v. Chr.:</b> Aeneas, der von der Göttin Aphrodite abstammte, konnte sich aus dem brennenden Troja retten. Nach zehn Jahren Irrfahrt landete er in Mittelitalien und heiratete eine dortige Königstochter. Seine Nachkommen wurden ebenfalls Könige.</div></div>
-                        <div class="line-p"><div class="line-number">5</div><div class="line-text">Einer davon war Numitor, ein gutherziger Mann. Doch kurz nach seinem Amtsantritt setzte sein machtgieriger Bruder Amulius ihn ab und ernannte sich selbst zum König. Um Konkurrenz zu verhindern, tötete Amulius Numitors Sohn und zwang Numitors Tochter, Priesterin der Göttin Vesta zu werden...</div></div>
-                        <div class="line-p"><div class="line-number">10</div><div class="line-text">denn diese Vestalinnen durften nicht heiraten und keine Kinder bekommen. So herrschte Amulius viele Jahre. Eines Tages erschien Numitors Tochter am Fluss Tiber der Gott Mars. Die junge Priesterin wurde von ihm schwanger und brachte Zwillinge zur Welt. Als Amulius davon erfuhr, wollte er die Kinder töten.</div></div>
-                        <div class="line-p"><div class="line-number">15</div><div class="line-text">Doch ihre Mutter legte sie in einen Korb, den sie in den Fluss Tiber setzte. Amulius ließ die Mutter der Kinder daraufhin ins Gefängnis werfen. Durch den Schutz ihres Vaters Mars ertranken die Zwillinge nicht und wurden ans Ufer getrieben. Als sie dort vor Hunger schrien, säugte eine Wölfin sie mit ihrer Milch.</div></div>
-                        <div class="line-p"><div class="line-number">20</div><div class="line-text">Kurz darauf fand ein Hirte die Zwillinge und nahm sie mit nach Hause. Jahre später erfuhren die beiden - sie hießen Romulus und Remus - als junge Männer von ihrer wahren königlichen Herkunft. Sie riefen ihre Freunde zusammen, stürmten den Palast des Amulius und töteten ihn.</div></div>
-                        <div class="line-p"><div class="line-number">25</div><div class="line-text">Dann befreiten sie ihre Mutter und setzten ihren alten Großvater Numitor wieder als König ein. Sie selbst wollten eine neue Stadt gründen, und zwar dort, wo die Wölfin sie gesäugt hatte. Durch einen Götterentscheid sollte Romulus der Gründer werden.</div></div>
-                        <div class="line-p"><div class="line-number">30</div><div class="line-text">Als er die Stadtgrenze mit einem Pflug kennzeichnete, hüpfte Remus voller Spott über die Furche hinweg. Wutentbrannt rief Romulus: „So soll es jedem gehen, der meine Stadt angreift!" Und er brachte Remus um. Die neue Stadt nannte Romulus nach ihm selbst: Rom.</div></div>
+                    <div class="source-box">
+                        <h3>Q1 | Die Gründungssage Roms</h3>
+                        <div class="text-with-lines">
+                            <div class="line-p"><div class="line-number">1</div><div class="line-text"><b>Die Sage von der Gründung Roms im Jahr 753 v. Chr.:</b> Aeneas, der von der Göttin Aphrodit[...]
+                            <div class="line-p"><div class="line-number">5</div><div class="line-text">Einer davon war Numitor, ein gutherziger Mann. Doch kurz nach seinem Amtsantritt setzte sein mac[...]
+                            <div class="line-p"><div class="line-number">10</div><div class="line-text">denn diese Vestalinnen durften nicht heiraten und keine Kinder bekommen. So herrschte Amulius v[...]
+                            <div class="line-p"><div class="line-number">15</div><div class="line-text">Doch ihre Mutter legte sie in einen Korb, den sie in den Fluss Tiber setzte. Amulius ließ die [...]
+                            <div class="line-p"><div class="line-number">20</div><div class="line-text">Kurz darauf fand ein Hirte die Zwillinge und nahm sie mit nach Hause. Jahre später erfuhren di[...]
+                            <div class="line-p"><div class="line-number">25</div><div class="line-text">Dann befreiten sie ihre Mutter und setzten ihren alten Großvater Numitor wieder als König ein[...]
+                            <div class="line-p"><div class="line-number">30</div><div class="line-text">Als er die Stadtgrenze mit einem Pflug kennzeichnete, hüpfte Remus voller Spott über die Furc[...]
+                        </div>
                     </div>
-                </div>
-            `
-        },
-        m2: {
-            title: "M2: Die Expansion des Reiches",
-            task: "1) <b>Untersuche</b> die Geschichtskarte des Römischen Reiches im bereitgestellten Material.<br><br>2) <b>Analysiere</b> den Erfolg der römischen Armee und notiere die wichtigsten Gründe für die Expansion im Notizbuch.",
-            question: "Welche Faktoren machten die römische Armee so erfolgreich und wie weit dehnte sich das Reich aus?",
-            isCustomLayout: true,
-            hasExternalLink: true,
-            externalLinkText: "Zum Kartenmaterial (PDF)",
-            externalLinkTarget: "Kartenmaterial.pdf",
-            htmlContent: `
-                <div class="material-box">
-                    <h3>D1 | Geschichtskarte des Römischen Reiches</h3>
-                    <div class="text-with-lines">
-                        <div class="line-p"><div class="line-number">1</div><div class="line-text">Durch disziplinierte Legionen und geschickte Bündnisse breitete sich Rom über den gesamten Mittelmeerraum aus.</div></div>
-                        <div class="line-p"><div class="line-number">3</div><div class="line-text">Aus der kleinen Republik am Tiber wurde im Laufe der Jahrhunderte ein riesiges Weltreich (Imperium Romanum), das sich über drei Kontinente erstreckte.</div></div>
+                `
+            },
+            m2: {
+                title: "M2: Die Expansion des Reiches",
+                task: "1) <b>Untersuche</b> die Geschichtskarte des Römischen Reiches im bereitgestellten Material.<br><br>2) <b>Analysiere</b> den Erfolg der römischen Armee und notiere die wichti[...]
+                question: "Welche Faktoren machten die römische Armee so erfolgreich und wie weit dehnte sich das Reich aus?",
+                hasExternalLink: true,
+                externalLinkText: "Zum Kartenmaterial (PDF)",
+                externalLinkTarget: "Kartenmaterial.pdf",
+                htmlContent: `
+                    <div class="material-box">
+                        <h3>D1 | Geschichtskarte des Römischen Reiches</h3>
+                        <div class="text-with-lines">
+                            <div class="line-p"><div class="line-number">1</div><div class="line-text">Durch disziplinierte Legionen und geschickte Bündnisse breitete sich Rom über den gesamten Mit[...]
+                            <div class="line-p"><div class="line-number">3</div><div class="line-text">Aus der kleinen Republik am Tiber wurde im Laufe der Jahrhunderte ein riesiges Weltreich (Imperi[...]
+                        </div>
                     </div>
-                </div>
-            `
-        },
-        m3: {
-            title: "M3: Herrschaft im Römischen Reich",
-            task: "Hier wird die Aufgabenstellung für das Modul M3 stehen.",
-            question: "Deine Ausarbeitung zu Modul M3:",
-            isCustomLayout: false,
-            hasExternalLink: false,
-            text: "Hier kannst du bald die Materialien und Quellen zur römischen Herrschaft einfügen."
-        },
-        m4_aussere: {
-            title: "M4: Äußere Ursachen des Untergangs",
-            task: "<b>Arbeite heraus</b>, welche Rolle die Angriffe von außen und die Völkerwanderung beim Zerfall des Reiches spielten.",
-            question: "Welche äußeren Faktoren führten zum Untergang?",
-            isCustomLayout: false,
-            hasExternalLink: false,
-            text: "<b>D2 - Äußere Ursachen für den Untergang des Römischen Reiches Trotz einiger Auseinandersetzungen an den Grenzen erlebte das Römische Reich im 1. und 2. Jahrhundert n. Chr. eine weitgehend ruhige Zeit. Das änderte sich ab Mitte des 3. Jahrhunderts grundlegend. Die Ursachen für den schrittweisen Zerfall waren dabei vielschichtig. Germanen und Perser bedrängten die Grenzen des Reiches immer häufiger. Die Verteidigung und Verwaltung des Reiches wurde somit auf eine harte Probe gestellt. Als Lösung wurde das Römische Reich 284 n. Chr. in einen östlichen und einen westlichen Verwaltungsbezirk geteilt. 395 n. Chr. wurde das Reich sogar offiziell in eine westliche und eine östliche Reichshälfte geteilt. Somit gab es von nun an zwei Römische Reiche mit jeweils voneinander unabhängigen Herrschern. Gegen Ende des 4. Jahrhunderts n. Chr. begann das Volk der Hunnen, das etwa in dem Gebiet der heutigen Mongolei sich nach Westen zu bewegen. Die Gründe dafür sind bis heute nicht ganz geklärt. Durch diese Bewegung bedrohten sie wiederum die germanischen und asiatischen Nachbarvölker des Römischen Reiches, denen nichts anderes übrig blieb als nach Westen auf das Gebiet des Römischen Reiches zu fliehen. Und diesem Ansturm, der sogar als „Völkerwanderung“ bezeichnet wird, konnten die Römer aufgrund ihrer damaligen militärischen und politischen Schwäche nicht mehr standhalten. Die Menschen wanderten ziellos durch Europa, immer auf der Suche nach einer neuen Heimat. Oft ließen sie sich nur für einige Monate oder Jahre an einer Stelle nieder. Häufig gab es Streit mit Einheimischen um Jagdgründe, Weideland oder Wohnplätze. Es konnte sein, dass man hungern musste oder in Kämpfe verwickelt wurde. Anfangs versuchten die römischen Kaiser, die wandernden Völker als Verbündete auf römischem Territorium anzusiedeln. Doch immer wieder kam es zu Kämpfen, in denen nun oft auch die ehemals unbesiegbare römische Armee unterlag. 410 n. Chr. eroberten die Westgoten sogar die Stadt Rom. Im Jahr 476 n. Chr. setzten germanische Truppen den letzten weströmischen Kaiser ab. Ein mächtiges und glanzvolles Weltreich, das Jahrhunderte Bestand hatte, war zerfallen. Entnommen aus: Zeiten und Menschen 1, 2021, S. 185"
-        },
-        m4_innere: {
-            title: "M4: Innere Ursachen des Untergangs",
-            task: "<b>Erkläre</b> die wirtschaftlichen und politischen Krisenherde, die das Reich von innen heraus geschwächt haben.",
-            question: "Welche inneren Krisen schadeten dem Reich?",
-            isCustomLayout: false,
-            hasExternalLink: false,
-            text: "<b>Innere Krisen:</b> Häufige Bürgerkriege um die Kaiserkrone, eine hohe Inflation, Korruption in der Verwaltung und wirtschaftliche Probleme schwächten Rom über Jahrzehnte. Zudem führte die Teilung des Reiches in Westrom und Ostrom zu einer Spaltung der Kräfte."
-        },
-        m5: {
-            title: "M5: Gesellschaft im Römischen Reich",
-            task: "Hier wird die Aufgabenstellung für das Modul M5 stehen.",
-            question: "Deine Ausarbeitung zu Modul M5:",
-            isCustomLayout: false,
-            hasExternalLink: false,
-            text: "Hier kannst du bald Texte zur römischen Familie, Sklaven, Patriziern und Plebejern platzieren."
-        }
-    };
+                `
+            },
+            m3: {
+                title: "M3: Herrschaft im Römischen Reich",
+                task: "Hier wird die Aufgabenstellung für das Modul M3 stehen.",
+                question: "Deine Ausarbeitung zu Modul M3:",
+                hasExternalLink: false,
+                text: "Hier kannst du bald die Materialien und Quellen zur römischen Herrschaft einfügen."
+            },
+            m4_aussere: {
+                title: "M4: Äußere Ursachen des Untergangs",
+                task: "<b>Arbeite heraus</b>, welche Rolle die Angriffe von außen und die Völkerwanderung beim Zerfall des Reiches spielten.",
+                question: "Welche äußeren Faktoren führten zum Untergang?",
+                hasExternalLink: false,
+                text: "<b>D2 - Äußere Ursachen für den Untergang des Römischen Reiches Trotz einiger Auseinandersetzungen an den Grenzen erlebte das Römische Reich im 1. und 2. Jahrhundert n. Ch[...]
+            },
+            m4_innere: {
+                title: "M4: Innere Ursachen des Untergangs",
+                task: "<b>Erkläre</b> die wirtschaftlichen und politischen Krisenherde, die das Reich von innen heraus geschwächt haben.",
+                question: "Welche inneren Krisen schadeten dem Reich?",
+                hasExternalLink: false,
+                text: "<b>Innere Krisen:</b> Häufige Bürgerkriege um die Kaiserkrone, eine hohe Inflation, Korruption in der Verwaltung und wirtschaftliche Probleme schwächten Rom über Jahrzehnte[...]
+            },
+            m5: {
+                title: "M5: Gesellschaft im Römischen Reich",
+                task: "Hier wird die Aufgabenstellung für das Modul M5 stehen.",
+                question: "Deine Ausarbeitung zu Modul M5:",
+                hasExternalLink: false,
+                text: "Hier kannst du bald Texte zur römischen Familie, Sklaven, Patriziern und Plebejern platzieren."
+            }
+        };
 
     let currentModuleId = "";
 
@@ -506,24 +659,15 @@
         }
 
         if (moduleId === 'm4') {
+            localStorage.setItem('lastModule', moduleId);
             document.getElementById('start-page').classList.add('hidden');
             document.getElementById('module-page').classList.add('hidden');
             document.getElementById('m4-overview-page').classList.remove('hidden');
             return;
-            if (moduleId === 'm4') { 
-        // HIER die Zeile einfügen, damit auch M4 als "letzter Standort" gespeichert wird:
-        localStorage.setItem('lastModule', moduleId);
-
-        document.getElementById('start-page').classList.add('hidden'); 
-        document.getElementById('module-page').classList.add('hidden'); 
-        document.getElementById('m4-overview-page').classList.remove('hidden'); 
-        return; 
-    }
-
-    // Und hier speicherst du für alle anderen Module:
-    localStorage.setItem('lastModule', moduleId);
         }
 
+        // Speichere letztes Modul für alle anderen Module
+        localStorage.setItem('lastModule', moduleId);
         currentModuleId = moduleId;
         const data = modulesData[moduleId];
 
@@ -534,7 +678,7 @@
         document.getElementById('notebook-question').innerText = data.question;
 
         const container = document.getElementById('materials-container');
-        if (data.isCustomLayout) {
+        if (data.htmlContent) {
             container.innerHTML = data.htmlContent;
         } else {
             container.innerHTML = `
